@@ -1,9 +1,10 @@
 import requests as r
 import pandas
+import os
 
 
 def download_discography():
-    """Downloads discography from vinniecolaiuta.com as json file and writes it into csv file."""
+    """Downloads discography as json file and writes it into csv file."""
 
     page_number = 0
     page_has_content = True
@@ -22,12 +23,13 @@ def download_discography():
 
 
 def pick_random_album():
-    """Picks random album from the discography inside discography.cdv"""
+    """Picks random album from the discography inside discography.csv"""
 
-    try:
+    if os.path.exists("discography.csv"):
         data = pandas.read_csv("discography.csv")
-    except FileNotFoundError:
-        download_discography()
     else:
-        random_album = data.sample()
-        print(random_album)
+        download_discography()
+        data = pandas.read_csv("discography.csv")
+
+    random_album = data.sample()
+    print(random_album)
