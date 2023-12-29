@@ -22,6 +22,7 @@ def download_discography():
             page_has_content = False
 
 
+
 def pick_random_album():
     """Picks random album from the discography inside discography.csv"""
 
