@@ -8,7 +8,7 @@ class DiscographyDownloader:
         self.base_url = base_url
         self.page_number = 0
         self.page_has_content = True
-        self.filename = 'discography.csv'
+        self.filename = '../discography.csv'
 
     def download_page(self, page_number):
         """Downloads given page of the whole discography as json data."""
