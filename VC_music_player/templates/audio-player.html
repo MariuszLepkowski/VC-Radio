@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+
+    </style>
+    <title>YouTube Audio Player</title>
+</head>
+<body>
+    <div id="title">Loading...</div>
+
+    <div id="container">
+        <div id="player-controls">
+            <div id="youtube-icon" onclick="togglePlayPause()"></div>
+            <div id="timeInfo">0:00 / 0:00</div>
+            <div id="progressContainer" onclick="seekToTime(event)">
+                <div id="progressBar"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="alternative-link" style="display: none;">
+
+    </div>
+
+    <div data-video="{{ video_id }}" data-autoplay="0" data-loop="1" id="youtube-audio"></div>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="{{ url_for('static', filename='js/ytAudioPlayer.js') }}"></script>
+
+</body>
+</html>
