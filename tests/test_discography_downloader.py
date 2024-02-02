@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import MagicMock, patch
-from discography_downloader import DiscographyDownloader
+from VC_discography_scraper.discography_downloader import DiscographyDownloader
 
 
 class TestDiscographyDownloader(unittest.TestCase):
