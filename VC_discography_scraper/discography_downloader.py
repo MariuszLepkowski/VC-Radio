@@ -42,4 +42,4 @@ class DiscographyDownloader:
 
         data = pd.read_csv(self.filename)
         random_album = data.sample()
-        print(random_album)
+        return random_album
