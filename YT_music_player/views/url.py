@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, redirect, url_for, request, session
-from VC_music_player.forms import UrlForm
+from YT_music_player.forms import UrlForm
 
 
 url_blueprint = Blueprint('url', __name__)

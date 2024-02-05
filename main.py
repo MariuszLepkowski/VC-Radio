@@ -1,8 +1,8 @@
 
-from VC_music_player import create_app as create_music_app
+from YT_music_player import create_app as create_music_app
 from VC_discography_scraper.discography_downloader import DiscographyDownloader
-from VC_music_player.views.url import url_blueprint
-from VC_music_player.views.audio_player import audio_player_blueprint
+from YT_music_player.views.url import url_blueprint
+from YT_music_player.views.audio_player import audio_player_blueprint
 
 DISCOGRAPHY_URL = "https://vinniecolaiuta.com/Home/GetPageOfRecordings?page="
 
