@@ -6,3 +6,5 @@ Flask-WTF==1.2.1
 Bootstrap_Flask==2.2.0
 Werkzeug==2.2.2
 python-dotenv
+ytmusicapi
+google-api-python-client
