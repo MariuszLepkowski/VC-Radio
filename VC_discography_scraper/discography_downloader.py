@@ -19,9 +19,9 @@ class DiscographyDownloader:
     def save_to_csv(self, json_data):
         """Saves json_data to a CSV file called 'discography.csv'."""
         if not os.path.exists(self.filename):
-            pd.DataFrame(json_data).drop(columns=["$id", "id", "year", "url"]).to_csv(self.filename, index=False)
+            pd.DataFrame(json_data).to_csv(self.filename, index=False)
         else:
-            page = pd.DataFrame(json_data).drop(columns=["$id", "id", "year", "url"])
+            page = pd.DataFrame(json_data)
             page.to_csv(self.filename, mode="a", index=False, header=False)
 
     def download_and_save_whole_discography(self):
