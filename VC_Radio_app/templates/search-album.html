@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search album</title>
+
+    <style>
+        .hidden {
+            display: none;
+        }
+
+        #header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: white; /* lub dowolny inny kolor tła */
+            z-index: 1000; /* zapewnia, że nagłówek jest na wierzchu */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* opcjonalny cień */
+            padding: 10px 20px; /* opcjonalny odstęp */
+        }
+    </style>
+
+</head>
+<body>
+<!--<div id="header">-->
+    <h1>Randomly picked album:</h1>
+    <h2> {{ album.artist  }} - "{{ album.album_title }}"  ({{ album.year }}) </h2>
+</div>
+
+<br>
+<!--<p>{{ results }}</p>-->
+{% if results.yt_music_album[0]: %}
+
+    <h3>Albums found on yt music:</h3>
+
+    {% for album in results.yt_music_album[1]: %}
+        <p> {{ album.ytMusicAlbumArtist}} - "{{ album.ytMusicAlbumTitle}}" </p>
+        <h4 onclick="toggleTracklist(this)">Click to see the tracklist</h4>
+        <div class="tracklist hidden">
+            {% for track in album.AlbumTracklist %}
+                <p>{{ track.trackNumber }}. <a href="{{ track.trackURL }}">{{ track.trackTitle }}</a></p>
+            {% endfor %}
+        </div>
+        <br>
+
+    {% endfor %}
+
+{% endif %}
+
+{% if results.yt_music_playlist[0]: %}
+
+    <h3>Playlists found on yt music:</h3>
+
+<!--    {% for album in results.yt_music_playlist[1]: %}-->
+<!--        <p> {{ album.ytMusicAlbumArtist}} - "{{ album.ytMusicAlbumTitle}}" </p>-->
+<!--        <h4 onclick="toggleTracklist(this)">Click to see the tracklist</h4>-->
+<!--        <div class="tracklist hidden">-->
+<!--            {% for track in album.AlbumTracklist %}-->
+<!--                <p>{{ track.trackNumber }}. <a href="{{ track.trackURL }}">{{ track.trackTitle }}</a></p>-->
+<!--            {% endfor %}-->
+<!--        </div>-->
+<!--        <br>-->
+
+    {% endfor %}
+{% endif %}
+
+{% if results.yt_video[0]: %}
+
+    <h3>Videos found on yt:</h3>
+
+<!--    {% for album in results.yt_video[1]: %}-->
+<!--        <p> {{ album.ytMusicAlbumArtist}} - "{{ album.ytMusicAlbumTitle}}" </p>-->
+<!--        <h4 onclick="toggleTracklist(this)">Click to see the tracklist</h4>-->
+<!--        <div class="tracklist hidden">-->
+<!--            {% for track in album.AlbumTracklist %}-->
+<!--                <p>{{ track.trackNumber }}. <a href="{{ track.trackURL }}">{{ track.trackTitle }}</a></p>-->
+<!--            {% endfor %}-->
+<!--        </div>-->
+<!--        <br>-->
+
+<!--    {% endfor %}-->
+
+
+{% endif %}
+
+{% if results.yt_playlist[0]: %}
+
+    <h3>Playlists found on yt:</h3>
+
+    {% for playlist in results.yt_playlist[1]: %}
+        <p> <a href="{{ playlist.YouTubePlaylistUrl }}">"{{ playlist.YouTubePlaylistTitle }}"</a> </p>
+        <br>
+
+    {% endfor %}
+
+
+{% endif %}
+
+
+
+<script>
+    function toggleTracklist(element) {
+        var tracklist = element.nextElementSibling;
+        if (tracklist.classList.contains('hidden')) {
+            tracklist.classList.remove('hidden');
+            element.textContent = 'Click to hide tracklist';
+        } else {
+            tracklist.classList.add('hidden');
+            element.textContent = 'Click to show tracklist';
+        }
+    }
+</script>
+
+</body>
+</html>

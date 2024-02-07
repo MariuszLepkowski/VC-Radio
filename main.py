@@ -1,18 +1,14 @@
+from VC_Radio_app import create_app
+from VC_Radio_app.views.url import url_blueprint
+from VC_Radio_app.views.audio_player import audio_player_blueprint
+from VC_Radio_app.views.search_album import search_album_blueprint
 
-from YT_music_player import create_app as create_music_app
-from VC_discography_scraper.discography_downloader import DiscographyDownloader
-from YT_music_player.views.url import url_blueprint
-from YT_music_player.views.audio_player import audio_player_blueprint
 
-DISCOGRAPHY_URL = "https://vinniecolaiuta.com/Home/GetPageOfRecordings?page="
 
-VC_music_player_app = create_music_app()
-VC_music_player_app.register_blueprint(url_blueprint)
-VC_music_player_app.register_blueprint(audio_player_blueprint)
-
-# Run scraper
-discography_downloader = DiscographyDownloader(DISCOGRAPHY_URL)
-discography_downloader.pick_random_album()
+VC_Radio_app = create_app()
+VC_Radio_app.register_blueprint(url_blueprint)
+VC_Radio_app.register_blueprint(audio_player_blueprint)
+VC_Radio_app.register_blueprint(search_album_blueprint)
 
 if __name__ == "__main__":
-    VC_music_player_app.run(debug=True, port=5000)
+    VC_Radio_app.run(debug=True, port=5000)
