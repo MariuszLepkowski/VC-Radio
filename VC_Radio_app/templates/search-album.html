@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Search album</title>
+    <title>VC-Radio</title>
 
     <style>
         .hidden {
@@ -14,90 +14,85 @@
             top: 0;
             left: 0;
             width: 100%;
-            background-color: white; /* lub dowolny inny kolor tła */
-            z-index: 1000; /* zapewnia, że nagłówek jest na wierzchu */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* opcjonalny cień */
-            padding: 10px 20px; /* opcjonalny odstęp */
+            background-color: white;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 10px 20px;
+        }
+
+        #content {
+            margin-top: 150px; /* Zwiększamy margines do 150 pikseli */
         }
     </style>
 
 </head>
 <body>
-<!--<div id="header">-->
-    <h1>Randomly picked album:</h1>
+<div id="header">
+    <h1>Randomly picked album with Vinnie:</h1>
     <h2> {{ album.artist  }} - "{{ album.album_title }}"  ({{ album.year }}) </h2>
 </div>
 
 <br>
-<!--<p>{{ results }}</p>-->
-{% if results.yt_music_album[0]: %}
 
-    <h3>Albums found on yt music:</h3>
+<div id="content">
+    {% if results.yt_music_album[1] %}
+        <h2>Albums found on yt music:</h2>
+        {% for album in results.yt_music_album[1]: %}
+            <p> {{ album.ytMusicAlbumArtist}} - "{{ album.ytMusicAlbumTitle}}" </p>
+            <h4 onclick="toggleTracklist(this)">Click to see the tracklist</h4>
+            <div class="tracklist hidden">
+                {% for track in album.AlbumTracklist %}
+                    <p>{{ track.trackNumber }}. <a href="{{ track.trackURL }}">{{ track.trackTitle }}</a></p>
+                {% endfor %}
+            </div>
+            <br>
+        {% endfor %}
+    {% endif %}
 
-    {% for album in results.yt_music_album[1]: %}
-        <p> {{ album.ytMusicAlbumArtist}} - "{{ album.ytMusicAlbumTitle}}" </p>
-        <h4 onclick="toggleTracklist(this)">Click to see the tracklist</h4>
-        <div class="tracklist hidden">
-            {% for track in album.AlbumTracklist %}
-                <p>{{ track.trackNumber }}. <a href="{{ track.trackURL }}">{{ track.trackTitle }}</a></p>
-            {% endfor %}
-        </div>
-        <br>
-
-    {% endfor %}
-
-{% endif %}
-
-{% if results.yt_music_playlist[0]: %}
-
-    <h3>Playlists found on yt music:</h3>
-
-<!--    {% for album in results.yt_music_playlist[1]: %}-->
-<!--        <p> {{ album.ytMusicAlbumArtist}} - "{{ album.ytMusicAlbumTitle}}" </p>-->
-<!--        <h4 onclick="toggleTracklist(this)">Click to see the tracklist</h4>-->
-<!--        <div class="tracklist hidden">-->
-<!--            {% for track in album.AlbumTracklist %}-->
-<!--                <p>{{ track.trackNumber }}. <a href="{{ track.trackURL }}">{{ track.trackTitle }}</a></p>-->
-<!--            {% endfor %}-->
-<!--        </div>-->
-<!--        <br>-->
-
-    {% endfor %}
-{% endif %}
-
-{% if results.yt_video[0]: %}
-
-    <h3>Videos found on yt:</h3>
-
-<!--    {% for album in results.yt_video[1]: %}-->
-<!--        <p> {{ album.ytMusicAlbumArtist}} - "{{ album.ytMusicAlbumTitle}}" </p>-->
-<!--        <h4 onclick="toggleTracklist(this)">Click to see the tracklist</h4>-->
-<!--        <div class="tracklist hidden">-->
-<!--            {% for track in album.AlbumTracklist %}-->
-<!--                <p>{{ track.trackNumber }}. <a href="{{ track.trackURL }}">{{ track.trackTitle }}</a></p>-->
-<!--            {% endfor %}-->
-<!--        </div>-->
-<!--        <br>-->
-
-<!--    {% endfor %}-->
+    {% if results.yt_music_playlist[1] %}
+        <h2>Playlists found on yt music:</h2>
+        {% for playlist in results.yt_music_playlist[1]: %}
+            <p> <a href="{{ playlist.ytMusicPlaylistURL }}"> {{ playlist.ytMusicPlaylistTitle}}</a></p>
+            <h4 onclick="toggleTracklist(this)">Click to see the tracklist</h4>
+            <div class="tracklist hidden">
+                {% for track in playlist.PlaylistTracklist %}
+                    <p>{{ track.trackNumber }}. <a href="{{ track.trackURL }}">{{ track.trackTitle }}</a></p>
+                {% endfor %}
+            </div>
+            <br>
+        {% endfor %}
+    {% endif %}
 
 
-{% endif %}
+    {% if results.yt_playlist[1] %}
+    <h2>Playlists found on yt:</h2>
 
-{% if results.yt_playlist[0]: %}
+        {% for playlist in results.yt_playlist[1]: %}
 
-    <h3>Playlists found on yt:</h3>
+            <p> <a href="{{ playlist.YouTubePlaylistUrl }}">"{{ playlist.YouTubePlaylistTitle }}"</a> </p>
+            <h4 onclick="toggleTracklist(this)">Click to see the tracklist</h4>
+            <div class="tracklist hidden">
+                {% for track in playlist.yt_playlist_tracklist %}
 
-    {% for playlist in results.yt_playlist[1]: %}
-        <p> <a href="{{ playlist.YouTubePlaylistUrl }}">"{{ playlist.YouTubePlaylistTitle }}"</a> </p>
-        <br>
+                    <p>{{ track.video_num }}. <a href="{{ track.video_url }}">{{ track.video_title }}</a></p>
+                {% endfor %}
+            </div>
+            <br>
+        {% endfor %}
+    {% endif %}
 
-    {% endfor %}
+    {% if results.yt_video[1] %}
+    <h2>Videos found on yt:</h2>
+    <h4 onclick="toggleTracklist(this)">Click to see the tracklist</h4>
+    <div class="tracklist hidden">
+        {% for video in results.yt_video[1]: %}
+        <p> <a href="{{ video.YouTubeVideoUrl }}">{{ video.YouTubeVideoTitle }}</a></p>
+        {% endfor %}
+    </div>
+    <br>
+    {% endif %}
 
-
-{% endif %}
-
-
+</div>
 
 <script>
     function toggleTracklist(element) {
