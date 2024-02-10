@@ -3,33 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>VC-Radio</title>
-
-    <style>
-        .hidden {
-            display: none;
-        }
-
-        #header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: white;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            padding: 10px 20px;
-        }
-
-        #content {
-            margin-top: 150px; /* Increase margin to 150 pixels */
-        }
-    </style>
-
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
 <div id="header">
     <h1>Randomly picked album with Vinnie:</h1>
-    <h2> {{ album.artist  }} - "{{ album.album_title }}"  ({{ album.year }}) </h2>
+    <h2>{{ album.artist }} - "{{ album.album_title }}"  ({{ album.year }})</h2>
 </div>
 
 <br>
@@ -37,8 +16,8 @@
 <div id="content">
     {% if results.yt_music_album[1] %}
         <h2>Albums found on yt music:</h2>
-        {% for album in results.yt_music_album[1]: %}
-            <p> {{ album.ytMusicAlbumArtist}} - "{{ album.ytMusicAlbumTitle}}" </p>
+        {% for album in results.yt_music_album[1] %}
+            <p> {{ album.ytMusicAlbumArtist }} - "{{ album.ytMusicAlbumTitle }}" </p>
             <h4 onclick="toggleTracklist(this)">Click to see the tracklist</h4>
             <div class="tracklist hidden">
                 {% for track in album.AlbumTracklist %}
@@ -53,8 +32,8 @@
 
     {% if results.yt_music_playlist[1] %}
         <h2>Playlists found on yt music:</h2>
-        {% for playlist in results.yt_music_playlist[1]: %}
-            <p> <a href="{{ playlist.ytMusicPlaylistURL }}"> {{ playlist.ytMusicPlaylistTitle}}</a></p>
+        {% for playlist in results.yt_music_playlist[1] %}
+            <p> <a href="{{ playlist.ytMusicPlaylistURL }}">{{ playlist.ytMusicPlaylistTitle }}</a></p>
             <h4 onclick="toggleTracklist(this)">Click to see the tracklist</h4>
             <div class="tracklist hidden">
                 {% for track in playlist.PlaylistTracklist %}
@@ -67,17 +46,13 @@
         {% endfor %}
     {% endif %}
 
-
     {% if results.yt_playlist[1] %}
-    <h2>Playlists found on yt:</h2>
-
-        {% for playlist in results.yt_playlist[1]: %}
-
-            <p> <a href="{{ playlist.YouTubePlaylistUrl }}">"{{ playlist.YouTubePlaylistTitle }}"</a> </p>
+        <h2>Playlists found on yt:</h2>
+        {% for playlist in results.yt_playlist[1] %}
+            <p> <a href="{{ playlist.YouTubePlaylistUrl }}">{{ playlist.YouTubePlaylistTitle }}</a> </p>
             <h4 onclick="toggleTracklist(this)">Click to see the tracklist</h4>
             <div class="tracklist hidden">
                 {% for track in playlist.yt_playlist_tracklist %}
-
                     <p>{{ track.video_num }}. <a href="{{ track.video_url }}">{{ track.video_title }}</a>
                         <button onclick="addToPlaylist('{{ track.video_url }}', '{{ track.video_title }}')">Add to Playlist</button>
                     </p>
@@ -88,16 +63,16 @@
     {% endif %}
 
     {% if results.yt_video[1] %}
-    <h2>Videos found on yt:</h2>
-    <h4 onclick="toggleTracklist(this)">Click to see the tracklist</h4>
-    <div class="tracklist hidden">
-        {% for video in results.yt_video[1]: %}
-            <p> <a href="{{ video.YouTubeVideoUrl }}">{{ video.YouTubeVideoTitle }}</a>
-            <button onclick="addToPlaylist('{{ video.YouTubeVideoUrl }}', '{{ video.YouTubeVideoTitle }}')">Add to Playlist</button>
-            </p>
-        {% endfor %}
-    </div>
-    <br>
+        <h2>Videos found on yt:</h2>
+        <h4 onclick="toggleTracklist(this)">Click to see the tracklist</h4>
+        <div class="tracklist hidden">
+            {% for video in results.yt_video[1] %}
+                <p> <a href="{{ video.YouTubeVideoUrl }}">{{ video.YouTubeVideoTitle }}</a>
+                    <button onclick="addToPlaylist('{{ video.YouTubeVideoUrl }}', '{{ video.YouTubeVideoTitle }}')">Add to Playlist</button>
+                </p>
+            {% endfor %}
+        </div>
+        <br>
     {% endif %}
 
 </div>
@@ -107,13 +82,25 @@
 
 
 <!-- Playlist dialog -->
-<div id="playlist-dialog" class="playlist-dialog" style="display: none;">
-    <span class="close" onclick="closePlaylist()">&times;</span>
-    <h2>Your Playlist</h2>
-    <ul id="playlist">
-        <!-- Each track will be displayed here -->
-    </ul>
+<div id="content">
+    <!-- Your content here -->
+
+    <!-- Button to open playlist -->
+    <button onclick="openPlaylist()" id="open-playlist-btn">Open Playlist</button>
+
+    <!-- Playlist dialog -->
+    <div id="playlist-dialog" class="playlist-dialog" style="display: none;">
+        <span class="close" onclick="closePlaylist()">&times;</span>
+        <h2>Your Playlist</h2>
+        <ul id="playlist">
+            <!-- Each track will be displayed here -->
+        </ul>
+    </div>
 </div>
+
+
+
+
 
 <script src="{{ url_for('static', filename='js/playlist.js') }}"></script>
 

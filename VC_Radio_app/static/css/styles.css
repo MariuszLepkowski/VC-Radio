@@ -1,8 +1,10 @@
+/* Container */
 #container {
     text-align: center;
     margin-top: 20px;
 }
 
+/* Title */
 #title {
     font-size: 24px;
     font-weight: bold;
@@ -11,7 +13,7 @@
     font-family: sans-serif;
 }
 
-
+/* Player Controls */
 #player-controls {
     display: flex;
     align-items: center;
@@ -19,9 +21,9 @@
     margin-bottom: 20px;
 }
 
+/* YouTube Icon */
 #youtube-icon {
     cursor: pointer;
-    cursor: hand;
     width: 50px;
     height: 50px;
     background-image: url('/play.png');
@@ -29,6 +31,7 @@
     margin-right: 10px;
 }
 
+/* Progress Bar Container */
 #progressContainer {
     width: 50%;
     height: 30px;
@@ -37,6 +40,7 @@
     cursor: pointer;
 }
 
+/* Progress Bar */
 #progressBar {
     height: 100%;
     background-color: #4caf50;
@@ -44,12 +48,14 @@
     transition: width 0.1s ease-in-out;
 }
 
+/* Time Info */
 #timeInfo {
     margin: 5px 0;
     font-size: 16px;
     margin-right: 10px;
 }
 
+/* Alternative Link */
 #alternative-link a {
     display: flex;
     flex-direction: column;
@@ -59,22 +65,25 @@
     margin-top: 3px;
 }
 
+/* YouTube Logo */
 #youtube-logo {
     width: 100px;
     height: auto;
     margin-top: 5px;
 }
 
+/* Alternative Link Paragraph */
 #alternative-link p {
     margin: 0;
     text-align: center;
 }
 
+/* Playlist Dialog */
 .playlist-dialog {
-    position: absolute;
-    top: 50%; /* Initial position from top */
-    left: 50%; /* Initial position from left */
-    transform: translate(-50%, -50%); /* Center the dialog */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     z-index: 1000;
     background-color: #f1f1f1;
     padding: 20px;
@@ -82,8 +91,10 @@
     border-radius: 5px;
     max-height: 80%;
     overflow-y: auto;
+    cursor: move; /* Cursor for dragging */
 }
 
+/* Close Button */
 .playlist-dialog .close {
     position: absolute;
     top: 10px;
@@ -91,14 +102,10 @@
     cursor: pointer;
 }
 
+/* Open Playlist Button */
 #open-playlist-btn {
     position: fixed;
     bottom: 20px;
     right: 20px;
     z-index: 1000;
 }
-
-
-
-
-
