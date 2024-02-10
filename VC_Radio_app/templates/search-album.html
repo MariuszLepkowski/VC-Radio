@@ -21,7 +21,7 @@
         }
 
         #content {
-            margin-top: 150px; /* Zwiększamy margines do 150 pikseli */
+            margin-top: 150px; /* Increase margin to 150 pixels */
         }
     </style>
 
@@ -42,7 +42,9 @@
             <h4 onclick="toggleTracklist(this)">Click to see the tracklist</h4>
             <div class="tracklist hidden">
                 {% for track in album.AlbumTracklist %}
-                    <p>{{ track.trackNumber }}. <a href="{{ track.trackURL }}">{{ track.trackTitle }}</a></p>
+                    <p>{{ track.trackNumber }}. <a href="{{ track.trackURL }}">{{ track.trackTitle }}</a>
+                        <button onclick="addToPlaylist('{{ track.trackURL }}', '{{ track.trackTitle }}')">Add to Playlist</button>
+                    </p>
                 {% endfor %}
             </div>
             <br>
@@ -56,7 +58,9 @@
             <h4 onclick="toggleTracklist(this)">Click to see the tracklist</h4>
             <div class="tracklist hidden">
                 {% for track in playlist.PlaylistTracklist %}
-                    <p>{{ track.trackNumber }}. <a href="{{ track.trackURL }}">{{ track.trackTitle }}</a></p>
+                    <p>{{ track.trackNumber }}. <a href="{{ track.trackURL }}">{{ track.trackTitle }}</a>
+                        <button onclick="addToPlaylist('{{ track.trackURL }}', '{{ track.trackTitle }}')">Add to Playlist</button>
+                    </p>
                 {% endfor %}
             </div>
             <br>
@@ -74,7 +78,9 @@
             <div class="tracklist hidden">
                 {% for track in playlist.yt_playlist_tracklist %}
 
-                    <p>{{ track.video_num }}. <a href="{{ track.video_url }}">{{ track.video_title }}</a></p>
+                    <p>{{ track.video_num }}. <a href="{{ track.video_url }}">{{ track.video_title }}</a>
+                        <button onclick="addToPlaylist('{{ track.video_url }}', '{{ track.video_title }}')">Add to Playlist</button>
+                    </p>
                 {% endfor %}
             </div>
             <br>
@@ -86,7 +92,9 @@
     <h4 onclick="toggleTracklist(this)">Click to see the tracklist</h4>
     <div class="tracklist hidden">
         {% for video in results.yt_video[1]: %}
-        <p> <a href="{{ video.YouTubeVideoUrl }}">{{ video.YouTubeVideoTitle }}</a></p>
+            <p> <a href="{{ video.YouTubeVideoUrl }}">{{ video.YouTubeVideoTitle }}</a>
+            <button onclick="addToPlaylist('{{ video.YouTubeVideoUrl }}', '{{ video.YouTubeVideoTitle }}')">Add to Playlist</button>
+            </p>
         {% endfor %}
     </div>
     <br>
@@ -94,18 +102,20 @@
 
 </div>
 
-<script>
-    function toggleTracklist(element) {
-        var tracklist = element.nextElementSibling;
-        if (tracklist.classList.contains('hidden')) {
-            tracklist.classList.remove('hidden');
-            element.textContent = 'Click to hide tracklist';
-        } else {
-            tracklist.classList.add('hidden');
-            element.textContent = 'Click to show tracklist';
-        }
-    }
-</script>
+<!-- Button to open playlist -->
+<button onclick="openPlaylist()" id="open-playlist-btn">Open Playlist</button>
+
+
+<!-- Playlist dialog -->
+<div id="playlist-dialog" class="playlist-dialog" style="display: none;">
+    <span class="close" onclick="closePlaylist()">&times;</span>
+    <h2>Your Playlist</h2>
+    <ul id="playlist">
+        <!-- Each track will be displayed here -->
+    </ul>
+</div>
+
+<script src="{{ url_for('static', filename='js/playlist.js') }}"></script>
 
 </body>
 </html>
