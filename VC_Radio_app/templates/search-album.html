@@ -27,6 +27,7 @@
                 {% for track in album.AlbumTracklist %}
                     <p>{{ track.trackNumber }}. <a href="{{ track.trackURL }}">{{ track.trackTitle }}</a>
                         <button onclick="addToPlaylist('{{ track.trackURL }}', '{{ track.trackTitle }}')">Add to Playlist</button>
+                        <button class="play-track-btn" data-url="{{ track.trackID }}">Play track</button>
                     </p>
                 {% endfor %}
             </div>
@@ -45,6 +46,7 @@
                 {% for track in playlist.PlaylistTracklist %}
                     <p>{{ track.trackNumber }}. <a href="{{ track.trackURL }}">{{ track.trackTitle }}</a>
                         <button onclick="addToPlaylist('{{ track.trackURL }}', '{{ track.trackTitle }}')">Add to Playlist</button>
+                        <button class="play-track-btn" data-url="{{ track.trackID }}">Play track</button>
                     </p>
                 {% endfor %}
             </div>
@@ -63,6 +65,7 @@
                 {% for track in playlist.yt_playlist_tracklist %}
                     <p>{{ track.video_num }}. <a href="{{ track.video_url }}">{{ track.video_title }}</a>
                         <button onclick="addToPlaylist('{{ track.video_url }}', '{{ track.video_title }}')">Add to Playlist</button>
+                        <button class="play-track-btn" data-url="{{ track.video_id }}">Play track</button>
                     </p>
                 {% endfor %}
             </div>
@@ -79,6 +82,7 @@
             {% for video in results.yt_video[1] %}
                 <p> <a href="{{ video.YouTubeVideoUrl }}">{{ video.YouTubeVideoTitle }}</a>
                     <button onclick="addToPlaylist('{{ video.YouTubeVideoUrl }}', '{{ video.YouTubeVideoTitle }}')">Add to Playlist</button>
+                    <button class="play-track-btn" data-url="{{ video.YouTubeVideoID }}">Play track</button>
                 </p>
             {% endfor %}
         </div>
