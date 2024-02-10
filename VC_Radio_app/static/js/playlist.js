@@ -35,7 +35,8 @@ function closePlaylist() {
 }
 
 // Function to add a track to the playlist
-function addToPlaylist(trackUrl, trackTitle) {
+// Funkcja dodająca track do listy odtwarzania
+function addToPlaylist(trackUrl, trackTitle, videoId) {
     var playlist = document.getElementById("playlist");
     var li = document.createElement("li");
     var a = document.createElement("a");
@@ -53,9 +54,20 @@ function addToPlaylist(trackUrl, trackTitle) {
     li.appendChild(button);
     playlist.appendChild(li);
 
-    // Open playlist modal after adding a track
+    // Dodaj przycisk PlayTrack
+    var playTrackButton = document.createElement("button");
+    playTrackButton.textContent = "Play track";
+    playTrackButton.classList.add("play-track-btn");
+    playTrackButton.dataset.url = videoId;
+    playTrackButton.onclick = function() {
+        // Tutaj dodaj kod do odtwarzania utworu
+    };
+    li.appendChild(playTrackButton);
+
+    // Otwórz playlistę po dodaniu utworu
     openPlaylist();
 }
+
 
 
 // Event listener for mouse down event on the entire modal

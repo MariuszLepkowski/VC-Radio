@@ -27,7 +27,7 @@
                 {% for track in album.AlbumTracklist %}
                     <p>{{ track.trackNumber }}. <a href="{{ track.trackURL }}">{{ track.trackTitle }}</a>
                         <button onclick="addToPlaylist('{{ track.trackURL }}', '{{ track.trackTitle }}')">Add to Playlist</button>
-                        <button class="play-track-btn" data-url="{{ track.trackID }}">Play track</button>
+                        <button class="play-track-btn" data-url="{{ track.video_id }}">Play track</button>
                     </p>
                 {% endfor %}
             </div>
@@ -46,7 +46,7 @@
                 {% for track in playlist.PlaylistTracklist %}
                     <p>{{ track.trackNumber }}. <a href="{{ track.trackURL }}">{{ track.trackTitle }}</a>
                         <button onclick="addToPlaylist('{{ track.trackURL }}', '{{ track.trackTitle }}')">Add to Playlist</button>
-                        <button class="play-track-btn" data-url="{{ track.trackID }}">Play track</button>
+                        <button class="play-track-btn" data-url="{{ track.video_id }}">Play track</button>
                     </p>
                 {% endfor %}
             </div>
@@ -82,7 +82,7 @@
             {% for video in results.yt_video[1] %}
                 <p> <a href="{{ video.YouTubeVideoUrl }}">{{ video.YouTubeVideoTitle }}</a>
                     <button onclick="addToPlaylist('{{ video.YouTubeVideoUrl }}', '{{ video.YouTubeVideoTitle }}')">Add to Playlist</button>
-                    <button class="play-track-btn" data-url="{{ video.YouTubeVideoID }}">Play track</button>
+                    <button class="play-track-btn" data-url="{{ video.video_id }}">Play track</button>
                 </p>
             {% endfor %}
         </div>
@@ -108,6 +108,12 @@
         <h2>Your Playlist</h2>
         <ul id="playlist">
             <!-- Each track will be displayed here -->
+            {% for track in playlist %}
+                <li>
+                    <a href="#" data-video-id="{{ track.video_id }}">{{ track.trackTitle }}</a>
+                    <button class="play-track-btn" data-url="{{ track.video_id }}">Play track</button>
+                </li>
+            {% endfor %}
         </ul>
     </div>
 </div>
