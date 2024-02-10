@@ -41,13 +41,6 @@ def search_album():
         search_results_info["yt_video"] = video_found
         search_results_info["yt_playlist"] = yt_playlist_found
 
-        # if not (album_found or ytm_playlist_found) and not video_found:
-        #     yt_playlist_found = search_playlist_on_yt(search_query)
-        #     search_results_info["yt_playlist"] = yt_playlist_found
-        #
-        #     if not ytm_playlist_found:
-        #         print("No results found.")
-
     except IndexError:
         print("An error occurred.")
 
