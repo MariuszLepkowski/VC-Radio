@@ -34,7 +34,18 @@ function closePlaylist() {
     playlistModal.style.display = 'none';
 }
 
-// Function to add a track to the playlist
+// Funkcja do obsługi kliknięcia przycisku "Play Track"
+function playTrack(videoId) {
+    // Znajdź element odtwarzacza YT
+    var youtubeAudio = document.getElementById("youtube-audio");
+
+    // Ustaw videoId
+    youtubeAudio.dataset.video = videoId;
+
+    // Zainicjuj odtwarzacz YT
+    onYouTubeIframeAPIReady();
+}
+
 // Funkcja dodająca track do listy odtwarzania
 function addToPlaylist(trackUrl, trackTitle, videoId) {
     var playlist = document.getElementById("playlist");
@@ -60,13 +71,14 @@ function addToPlaylist(trackUrl, trackTitle, videoId) {
     playTrackButton.classList.add("play-track-btn");
     playTrackButton.dataset.url = videoId;
     playTrackButton.onclick = function() {
-        // Tutaj dodaj kod do odtwarzania utworu
+        playTrack(videoId); // Wywołaj funkcję playTrack po kliknięciu przycisku "Play track"
     };
     li.appendChild(playTrackButton);
 
     // Otwórz playlistę po dodaniu utworu
     openPlaylist();
 }
+
 
 
 
