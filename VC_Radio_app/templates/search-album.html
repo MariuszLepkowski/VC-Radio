@@ -13,7 +13,9 @@
 
 <br>
 
-<div id="content">
+<button onclick="toggleSearchResults(this)">Show search results</button>
+<div id="search-results" class="hidden">
+
     {% if results.yt_music_album[1] %}
         <h2>Albums found on yt music:</h2>
         {% for album in results.yt_music_album[1] %}
@@ -111,6 +113,7 @@
 
 
 <script src="{{ url_for('static', filename='js/playlist.js') }}"></script>
+<script src="{{ url_for('static', filename='js/searchResults.js') }}"></script>
 
 </body>
 </html>

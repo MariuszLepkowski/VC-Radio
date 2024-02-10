@@ -156,3 +156,4 @@ function toggleTracklist(button) {
         button.textContent = 'Show tracklist';
     }
 }
+
