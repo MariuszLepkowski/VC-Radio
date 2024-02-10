@@ -62,6 +62,7 @@ def search_playlist_on_yt(search_query):
                             "video_num": video_num,
                             "video_title": video_title,
                             "video_url": video_url,
+                            "video_id": video_id,
                         }
                     )
 
@@ -124,6 +125,7 @@ def search_album_on_ytmusic(search_query):
                             'trackNumber': track['trackNumber'],
                             'trackTitle': track['title'],
                             'trackURL': YT_VIDEO_ENDPOINT + track['videoId'] if track.get('videoId') else "",
+                            'trackID': track['videoId'] if track.get('videoId') else "",
                         }
                     )
 
@@ -172,6 +174,7 @@ def search_playlist_on_ytmusic(search_query):
                             'trackNumber': track_num,
                             'trackTitle': track_title,
                             'trackURL': track_url,
+                            'trackID': track['videoId'],
                         }
                     )
                 else:
@@ -209,6 +212,7 @@ def search_video_on_yt(search_query):
             {
             'YouTubeVideoTitle': video_title,
             'YouTubeVideoUrl': YT_VIDEO_ENDPOINT + video_id,
+            'YouTubeVideoID': video_id,
             }
         )
 
