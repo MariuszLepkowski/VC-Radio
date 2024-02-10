@@ -109,3 +109,8 @@
     right: 20px;
     z-index: 1000;
 }
+
+.hidden {
+    display: none;
+}
+

@@ -144,3 +144,15 @@ function releaseModal() {
     document.removeEventListener('mousemove', resizeModal);
     document.removeEventListener('mouseup', releaseModal);
 }
+
+// Function to toggle tracklist visibility
+function toggleTracklist(element) {
+    var tracklist = element.nextElementSibling;
+    if (tracklist.classList.contains('hidden')) {
+        tracklist.classList.remove('hidden');
+        element.textContent = 'Click to hide tracklist';
+    } else {
+        tracklist.classList.add('hidden');
+        element.textContent = 'Click to show tracklist';
+    }
+}
