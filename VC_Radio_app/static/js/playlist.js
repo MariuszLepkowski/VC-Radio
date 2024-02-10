@@ -146,13 +146,13 @@ function releaseModal() {
 }
 
 // Function to toggle tracklist visibility
-function toggleTracklist(element) {
-    var tracklist = element.nextElementSibling;
+function toggleTracklist(button) {
+    var tracklist = button.nextElementSibling;
     if (tracklist.classList.contains('hidden')) {
         tracklist.classList.remove('hidden');
-        element.textContent = 'Click to hide tracklist';
+        button.textContent = 'Hide tracklist';
     } else {
         tracklist.classList.add('hidden');
-        element.textContent = 'Click to show tracklist';
+        button.textContent = 'Show tracklist';
     }
 }

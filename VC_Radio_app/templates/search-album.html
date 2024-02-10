@@ -18,7 +18,9 @@
         <h2>Albums found on yt music:</h2>
         {% for album in results.yt_music_album[1] %}
             <p> {{ album.ytMusicAlbumArtist }} - "{{ album.ytMusicAlbumTitle }}" </p>
-            <h4 onclick="toggleTracklist(this)">Click to see the tracklist</h4>
+
+            <button onclick="toggleTracklist(this)">Show tracklist</button>
+
             <div class="tracklist hidden">
                 {% for track in album.AlbumTracklist %}
                     <p>{{ track.trackNumber }}. <a href="{{ track.trackURL }}">{{ track.trackTitle }}</a>
@@ -34,7 +36,9 @@
         <h2>Playlists found on yt music:</h2>
         {% for playlist in results.yt_music_playlist[1] %}
             <p> <a href="{{ playlist.ytMusicPlaylistURL }}">{{ playlist.ytMusicPlaylistTitle }}</a></p>
-            <h4 onclick="toggleTracklist(this)">Click to see the tracklist</h4>
+
+            <button onclick="toggleTracklist(this)">Show tracklist</button>
+
             <div class="tracklist hidden">
                 {% for track in playlist.PlaylistTracklist %}
                     <p>{{ track.trackNumber }}. <a href="{{ track.trackURL }}">{{ track.trackTitle }}</a>
@@ -50,7 +54,9 @@
         <h2>Playlists found on yt:</h2>
         {% for playlist in results.yt_playlist[1] %}
             <p> <a href="{{ playlist.YouTubePlaylistUrl }}">{{ playlist.YouTubePlaylistTitle }}</a> </p>
-            <h4 onclick="toggleTracklist(this)">Click to see the tracklist</h4>
+
+            <button onclick="toggleTracklist(this)">Show tracklist</button>
+
             <div class="tracklist hidden">
                 {% for track in playlist.yt_playlist_tracklist %}
                     <p>{{ track.video_num }}. <a href="{{ track.video_url }}">{{ track.video_title }}</a>
@@ -64,7 +70,9 @@
 
     {% if results.yt_video[1] %}
         <h2>Videos found on yt:</h2>
-        <h4 onclick="toggleTracklist(this)">Click to see the tracklist</h4>
+
+        <button onclick="toggleTracklist(this)">Show tracklist</button>
+
         <div class="tracklist hidden">
             {% for video in results.yt_video[1] %}
                 <p> <a href="{{ video.YouTubeVideoUrl }}">{{ video.YouTubeVideoTitle }}</a>
