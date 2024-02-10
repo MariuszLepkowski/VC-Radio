@@ -103,7 +103,12 @@ def search_album_on_ytmusic(search_query):
                 unique_album_titles.add(album_title)
 
                 album_browseId = result['browseId']
-                album_info = yt.get_album(browseId=album_browseId)
+
+                try:
+                    album_info = yt.get_album(browseId=album_browseId)
+                except ValueError as e:
+                    print(f"Error while processing album: {e}")
+                    continue
 
                 album_tracklist = album_info['tracks']
 
@@ -146,8 +151,12 @@ def search_playlist_on_ytmusic(search_query):
                 word in playlist_title_wordlist for word in title_query.lower().split()):
             ytm_playlist_found = True
 
-            playlist_info = yt.get_playlist(playlistId=result['browseId'])
-            # print(f"Playlist title: {result['title']} Playlist url: {YT_PLAYLIST_ENDPOINT}{playlist_info['id']}")
+            try:
+                playlist_info = yt.get_playlist(playlistId=result['browseId'])
+            except ValueError as e:
+                print(f"Error while processing playlist: {e}")
+                continue
+
             playlist_tracklist = playlist_info.get('tracks', [])
             playlist_tracks = []
 
