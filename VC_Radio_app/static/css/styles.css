@@ -70,6 +70,35 @@
     text-align: center;
 }
 
+.playlist-dialog {
+    position: absolute;
+    top: 50%; /* Initial position from top */
+    left: 50%; /* Initial position from left */
+    transform: translate(-50%, -50%); /* Center the dialog */
+    z-index: 1000;
+    background-color: #f1f1f1;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-height: 80%;
+    overflow-y: auto;
+}
+
+.playlist-dialog .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+#open-playlist-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+
 
 
 
