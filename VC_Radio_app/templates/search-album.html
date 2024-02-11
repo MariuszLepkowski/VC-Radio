@@ -27,7 +27,6 @@
                 {% for track in album.AlbumTracklist %}
                     <p>{{ track.trackNumber }}. <a href="{{ track.trackURL }}">{{ track.trackTitle }}</a>
                         <button onclick="addToPlaylist('{{ track.trackURL }}', '{{ track.trackTitle }}')">Add to Playlist</button>
-                        <button class="play-track-btn" data-url="{{ track.video_id }}">Play track</button>
                     </p>
                 {% endfor %}
             </div>
@@ -46,7 +45,6 @@
                 {% for track in playlist.PlaylistTracklist %}
                     <p>{{ track.trackNumber }}. <a href="{{ track.trackURL }}">{{ track.trackTitle }}</a>
                         <button onclick="addToPlaylist('{{ track.trackURL }}', '{{ track.trackTitle }}')">Add to Playlist</button>
-                        <button class="play-track-btn" data-url="{{ track.video_id }}">Play track</button>
                     </p>
                 {% endfor %}
             </div>
@@ -65,7 +63,6 @@
                 {% for track in playlist.yt_playlist_tracklist %}
                     <p>{{ track.video_num }}. <a href="{{ track.video_url }}">{{ track.video_title }}</a>
                         <button onclick="addToPlaylist('{{ track.video_url }}', '{{ track.video_title }}')">Add to Playlist</button>
-                        <button class="play-track-btn" data-url="{{ track.video_id }}">Play track</button>
                     </p>
                 {% endfor %}
             </div>
@@ -82,7 +79,6 @@
             {% for video in results.yt_video[1] %}
                 <p> <a href="{{ video.YouTubeVideoUrl }}">{{ video.YouTubeVideoTitle }}</a>
                     <button onclick="addToPlaylist('{{ video.YouTubeVideoUrl }}', '{{ video.YouTubeVideoTitle }}')">Add to Playlist</button>
-                    <button class="play-track-btn" data-url="{{ video.video_id }}">Play track</button>
                 </p>
             {% endfor %}
         </div>
@@ -108,31 +104,12 @@
         <h2>Your Playlist</h2>
         <ul id="playlist">
             <!-- Each track will be displayed here -->
-            {% for track in playlist %}
-                <li>
-                    <a href="#" data-video-id="{{ track.video_id }}">{{ track.trackTitle }}</a>
-                    <button class="play-track-btn" data-url="{{ track.video_id }}">Play track</button>
-                </li>
-            {% endfor %}
         </ul>
     </div>
 </div>
 
-<!-- Odtwarzacz audio -->
-<div id="audio-player-modal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeAudioPlayer()">&times;</span>
-        <iframe id="audio-player-iframe" width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
-    </div>
-</div>
-
-
-
-
-
 <script src="{{ url_for('static', filename='js/playlist.js') }}"></script>
 <script src="{{ url_for('static', filename='js/searchResults.js') }}"></script>
-<script src="{{ url_for('static', filename='js/ytAudioPlayer.js') }}"></script>
 
 </body>
 </html>

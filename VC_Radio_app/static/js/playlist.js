@@ -1,3 +1,43 @@
+function addToPlaylist(trackUrl, trackTitle) {
+    var decodedTitle = decodeSpecialCharacters(trackTitle); // Dekodowanie znaków specjalnych
+
+    var playlist = document.getElementById("playlist");
+    var li = document.createElement("li");
+    var a = document.createElement("a");
+    var button = document.createElement("button");
+
+    a.href = trackUrl;
+    a.textContent = decodedTitle;
+
+    button.textContent = "Remove";
+    button.onclick = function() {
+        li.remove();
+    };
+
+    li.appendChild(a);
+    li.appendChild(button);
+    playlist.appendChild(li);
+
+    // Open playlist modal after adding a track
+    openPlaylist();
+}
+
+// Funkcja do dekodowania znaków specjalnych w tekście
+function decodeSpecialCharacters(text) {
+    // Lista znaków specjalnych do zamiany
+    var specialChars = {
+        '&#39;': "'",  // Zamień kod HTML dla apostrofu na sam apostrof
+        // Dodaj inne znaki specjalne, jeśli są potrzebne
+    };
+
+    // Zamień wszystkie znaki specjalne w tekście
+    for (var key in specialChars) {
+        text = text.replace(new RegExp(key, 'g'), specialChars[key]);
+    }
+
+    return text;
+}
+
 // Get the modal
 var playlistModal = document.getElementById('playlist-dialog');
 
@@ -34,54 +74,6 @@ function closePlaylist() {
     playlistModal.style.display = 'none';
 }
 
-// Funkcja do obsługi kliknięcia przycisku "Play Track"
-function playTrack(videoId) {
-    // Znajdź element odtwarzacza YT
-    var youtubeAudio = document.getElementById("youtube-audio");
-
-    // Ustaw videoId
-    youtubeAudio.dataset.video = videoId;
-
-    // Zainicjuj odtwarzacz YT
-    onYouTubeIframeAPIReady();
-}
-
-// Funkcja dodająca track do listy odtwarzania
-function addToPlaylist(trackUrl, trackTitle, videoId) {
-    var playlist = document.getElementById("playlist");
-    var li = document.createElement("li");
-    var a = document.createElement("a");
-    var button = document.createElement("button");
-
-    a.href = trackUrl;
-    a.textContent = trackTitle;
-
-    button.textContent = "Remove";
-    button.onclick = function() {
-        li.remove();
-    };
-
-    li.appendChild(a);
-    li.appendChild(button);
-    playlist.appendChild(li);
-
-    // Dodaj przycisk PlayTrack
-    var playTrackButton = document.createElement("button");
-    playTrackButton.textContent = "Play track";
-    playTrackButton.classList.add("play-track-btn");
-    playTrackButton.dataset.url = videoId;
-    playTrackButton.onclick = function() {
-        playTrack(videoId); // Wywołaj funkcję playTrack po kliknięciu przycisku "Play track"
-    };
-    li.appendChild(playTrackButton);
-
-    // Otwórz playlistę po dodaniu utworu
-    openPlaylist();
-}
-
-
-
-
 // Event listener for mouse down event on the entire modal
 playlistModal.addEventListener('mousedown', function(e) {
     // Prevent text selection while dragging or resizing
@@ -94,6 +86,13 @@ playlistModal.addEventListener('mousedown', function(e) {
     initialModalY = playlistModal.offsetTop;
     initialModalWidth = playlistModal.offsetWidth;
     initialModalHeight = playlistModal.offsetHeight;
+
+    // Check if the mouse is over the close button
+    var closeButton = e.target.closest('.close');
+    if (closeButton) {
+        closePlaylist(); // Close the playlist modal if the close button is clicked
+        return; // Exit the function early to prevent dragging or resizing
+    }
 
     // Check if the mouse is over the resize handle
     var resizeHandle = e.target.closest('.resize-handle');
@@ -180,4 +179,3 @@ function toggleTracklist(button) {
         button.textContent = 'Show tracklist';
     }
 }
-

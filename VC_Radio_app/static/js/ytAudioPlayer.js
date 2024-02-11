@@ -166,28 +166,3 @@ function addToPlaylist(url) {
     // Confirmation message for adding to playlist
     alert('Track has been added to your playlist!');
 }
-
-// Funkcja do wyświetlania odtwarzacza audio
-    function displayAudioPlayer(videoId) {
-        var modal = document.getElementById('audio-player-modal');
-        var iframe = document.getElementById('audio-player-iframe');
-        iframe.src = 'https://www.youtube.com/embed/' + videoId;
-        modal.style.display = 'block';
-    }
-
-    // Funkcja do zamykania odtwarzacza audio
-    function closeAudioPlayer() {
-        var modal = document.getElementById('audio-player-modal');
-        modal.style.display = 'none';
-    }
-
-    // Pobierz wszystkie przyciski "Play track"
-    var playTrackButtons = document.querySelectorAll('.play-track-btn');
-
-    // Dodaj obsługę zdarzenia kliknięcia dla każdego przycisku
-    playTrackButtons.forEach(function(button) {
-        button.addEventListener('click', function() {
-            var videoId = button.dataset.url;
-            displayAudioPlayer(videoId);
-        });
-    });
