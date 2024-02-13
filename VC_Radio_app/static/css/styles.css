@@ -1,88 +1,75 @@
-/* Resetowanie stylów */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Dodatkowe style CSS */
-.sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 250px; /* Szerokość panelu bocznego */
-    background-color: #f8f9fa; /* Kolor tła panelu bocznego */
-    padding: 20px;
-}
-.main-content {
-    margin-left: 270px; /* Dopełnienie marginesu dla panelu bocznego */
-    padding: 20px;
-}
-.footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: #343a40; /* Kolor tła stopki */
-    color: #ffffff; /* Kolor tekstu stopki */
-    text-align: center;
-    padding: 10px 0;
-}
-/* Style dla poszczególnych sekcji */
-.home-section {
-    background-color: #e9ecef; /* Kolor tła sekcji "Home" */
-}
-.random-album-section {
-    background-color: #ced4da; /* Kolor tła sekcji "Pick random album" */
-}
-.search-results-section {
-    background-color: #adb5bd; /* Kolor tła sekcji "Search results" */
-}
-.playlist-section {
-    background-color: #868e96; /* Kolor tła sekcji "Your Playlist" */
-}
-.logo {
-    width: 100px; /* Rozmiar logo */
-    margin-bottom: 20px; /* Odstęp między logo a sekcjami */
-}
-    .playlist-item {
-      padding-left: 20px;
-    }
-
-/* Player */
+/* Container */
 #container {
     text-align: center;
     margin-top: 20px;
 }
 
+/* Title */
 #title {
-    font-size: 24px;
+    font-size: 21px;
     font-weight: bold;
-    margin: 20px auto;
+    margin: 8px auto;
     text-align: center;
-    font-family: sans-serif;
 }
 
-
+/* Player Controls */
 #player-controls {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
+/* YouTube Icon */
 #youtube-icon {
     cursor: pointer;
-    cursor: hand;
-    width: 50px;
-    height: 50px;
+    width: 37px;
+    height: 37px;
     background-image: url('/play.png');
     background-size: cover;
     margin-right: 10px;
 }
 
+/* Progress Bar Container */
+#progressContainer {
+    width: 50%;
+    height: 6px;
+    background-color: #f0f0f0;
+    position: relative;
+    cursor: pointer;
+}
+
+/* Progress Bar */
+#progressBar {
+    height: 100%;
+    background-color: #4caf50;
+    width: 0;
+    transition: width 0.1s ease-in-out;
+
+}
+
+/* Thumb */
+#progressThumb {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 19px;
+    height: 19px;
+    background-color: #FF8C00;
+    border-radius: 50%;
+    border: 2px solid #0000CD;
+    pointer-events: none;
+}
 
 
+/* Time Info */
+#timeInfo {
+    margin: 5px 0;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+/* Alternative Link */
 #alternative-link a {
     display: flex;
     flex-direction: column;
@@ -92,51 +79,130 @@
     margin-top: 3px;
 }
 
+/* YouTube Logo */
 #youtube-logo {
     width: 100px;
     height: auto;
     margin-top: 5px;
 }
 
+/* Alternative Link Paragraph */
 #alternative-link p {
     margin: 0;
     text-align: center;
 }
 
-#progressContainer {
-    width: 50%;
-    height: 10px;
-    background-color: #f0f0f0;
-    position: relative;
+/* Playlist Dialog */
+.playlist-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    background-color: #f1f1f1;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-height: 80%;
+    overflow-y: auto;
+    cursor: move; /* Cursor for dragging */
+}
+
+/* Close Button */
+.playlist-dialog .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
     cursor: pointer;
 }
 
-#progressBar {
+/* Open Playlist Button */
+#open-playlist-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Styl dla modala */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
     height: 100%;
-    background-color: #4caf50;
-    width: 0;
-    transition: width 0.1s ease-in-out;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
-#timeInfo {
-    margin: 5px 0;
-    font-size: 16px;
-    margin-right: 20px;
-    margin-left: 5px;
+/* Styl dla zawartości modala */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
 }
 
-/* Thumb */
-#progressThumb {
-    width: 20px; /* szerokość kółka */
-    height: 20px; /* wysokość kółka */
-    background-color: #FF8C00; /* kolor kółka */
-    border-radius: 50%; /* kształt kółka */
-    border: 2px solid #00008B;
-    position: absolute; /* pozycjonowanie absolutne */
-    top: 50%; /* ustawienie na środku paska postępu */
-    transform: translateY(-50%); /* wyśrodkowanie w pionie */
-    left: 0; /* ustawienie na początku paska postępu */
-    cursor: pointer; /* zmiana kursora na wskaźnik */
-
+/* Styl dla przycisku zamknięcia */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
 }
 
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Dodatkowe style CSS */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 250px; /* Szerokość panelu bocznego */
+      background-color: #f8f9fa; /* Kolor tła panelu bocznego */
+      padding: 20px;
+    }
+    .main-content {
+      margin-left: 270px; /* Dopełnienie marginesu dla panelu bocznego */
+      padding: 20px;
+    }
+    .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #343a40; /* Kolor tła stopki */
+      color: #ffffff; /* Kolor tekstu stopki */
+      text-align: center;
+      padding: 10px 0;
+    }
+    /* Style dla poszczególnych sekcji */
+    .home-section {
+      background-color: #e9ecef; /* Kolor tła sekcji "Home" */
+    }
+    .random-album-section {
+      background-color: #ced4da; /* Kolor tła sekcji "Pick random album" */
+    }
+    .search-results-section {
+      background-color: #adb5bd; /* Kolor tła sekcji "Search results" */
+    }
+    .playlist-section {
+      background-color: #868e96; /* Kolor tła sekcji "Your Playlist" */
+    }
+    .logo {
+      width: 100px; /* Rozmiar logo */
+      margin-bottom: 20px; /* Odstęp między logo a sekcjami */
+    }

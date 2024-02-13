@@ -83,8 +83,8 @@ function updateTimeInfo() {
 function updateUI() {
     var durationElement = document.getElementById('timeInfo');
     var progressBar = document.getElementById('progressBar');
-    var progressThumb = document.getElementById('progressThumb');
-    var progressContainer = document.getElementById('progressContainer');
+    var progressThumb = document.getElementById('progressThumb'); // Dodajemy pobranie elementu kółka
+    var progressContainer = document.getElementById('progressContainer'); // Dodajemy pobranie kontenera paska postępu
     var progressPercentage = (currentTime / duration) * 100;
     progressBar.style.width = progressPercentage + '%';
     progressThumb.style.left = (progressPercentage - 1) + '%'; // Ustawiamy pozycję kółka (odejmujemy połowę szerokości)
@@ -132,3 +132,66 @@ function showAlternativeLink(videoId) {
     var loadingDiv = document.getElementById('title');
     loadingDiv.style.display = 'none';
 }
+
+// Load modal and close button
+var modal = document.getElementById('playlist-modal');
+var closeBtn = document.getElementsByClassName('close')[0];
+
+// Function to display modal
+function displayModal() {
+    modal.style.display = 'block';
+}
+
+// Function to close modal when close button or outside modal is clicked
+closeBtn.onclick = function() {
+    modal.style.display = 'none';
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = 'none';
+    }
+}
+
+// Function to add track to playlist
+function addToPlaylist(url) {
+    // Get existing playlist from browser's memory (if exists)
+    var playlist = JSON.parse(localStorage.getItem('playlist')) || [];
+    // Add new URL to playlist
+    playlist.push(url);
+    // Save updated playlist back to browser's memory
+    localStorage.setItem('playlist', JSON.stringify(playlist));
+    // Display playlist
+    displayPlaylist(playlist);
+    // Display modal if it's the first track added
+    if (playlist.length === 1) {
+        displayModal();
+    }
+    // Confirmation message for adding to playlist
+    alert('Track has been added to your playlist!');
+}
+
+// Funkcja do wyświetlania odtwarzacza audio
+    function displayAudioPlayer(videoId) {
+        var modal = document.getElementById('audio-player-modal');
+        var iframe = document.getElementById('audio-player-iframe');
+        iframe.src = 'https://www.youtube.com/embed/' + videoId;
+        modal.style.display = 'block';
+    }
+
+    // Funkcja do zamykania odtwarzacza audio
+    function closeAudioPlayer() {
+        var modal = document.getElementById('audio-player-modal');
+        modal.style.display = 'none';
+    }
+
+    // Pobierz wszystkie przyciski "Play track"
+    var playTrackButtons = document.querySelectorAll('.play-track-btn');
+
+    // Dodaj obsługę zdarzenia kliknięcia dla każdego przycisku
+    playTrackButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            var videoId = button.dataset.url;
+            displayAudioPlayer(videoId);
+        });
+    });
