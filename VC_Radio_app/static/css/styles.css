@@ -1,5 +1,3 @@
-
-
 /* Alternative Link */
 #alternative-link a {
     display: flex;
@@ -59,7 +57,7 @@
     display: none;
 }
 
-/* Styl dla modala */
+
 .modal {
     display: none;
     position: fixed;
@@ -72,7 +70,7 @@
     background-color: rgba(0, 0, 0, 0.8);
 }
 
-/* Styl dla zawartości modala */
+
 .modal-content {
     background-color: #fefefe;
     margin: 15% auto;
@@ -82,7 +80,7 @@
     max-width: 600px;
 }
 
-/* Styl dla przycisku zamknięcia */
+
 .close {
     color: #aaa;
     float: right;
@@ -97,48 +95,48 @@
     cursor: pointer;
 }
 
-/* Dodatkowe style CSS */
-    .sidebar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 250px; /* Szerokość panelu bocznego */
-      background-color: #f8f9fa; /* Kolor tła panelu bocznego */
-      padding: 20px;
-    }
-    .main-content {
-      margin-left: 270px; /* Dopełnienie marginesu dla panelu bocznego */
-      padding: 20px;
-    }
-    .footer {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      background-color: #343a40; /* Kolor tła stopki */
-      color: #ffffff; /* Kolor tekstu stopki */
-      text-align: center;
-      padding: 10px 0;
-    }
-    /* Style dla poszczególnych sekcji */
-    .home-section {
-      background-color: #e9ecef; /* Kolor tła sekcji "Home" */
-    }
-    .random-album-section {
-      background-color: #ced4da; /* Kolor tła sekcji "Pick random album" */
-    }
-    .search-results-section {
-      background-color: #adb5bd; /* Kolor tła sekcji "Search results" */
-    }
-    .playlist-section {
-      background-color: #868e96; /* Kolor tła sekcji "Your Playlist" */
-    }
-    .logo {
-      width: 100px; /* Rozmiar logo */
-      margin-bottom: 20px; /* Odstęp między logo a sekcjami */
-    }
 
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 250px;
+  background-color: #f8f9fa;
+  padding: 20px;
+}
+.main-content {
+  margin-left: 270px;
+  padding: 20px;
+}
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #343a40;
+  color: #ffffff;
+  text-align: center;
+  padding: 10px 0;
+}
+/**************************** Styles for all sections ***********************************/
+.home-section {
+  background-color: #e9ecef; /* "Home" */
+}
+.random-album-section {
+  background-color: #ced4da; /* "Pick random album" */
+}
+.search-results-section {
+  background-color: #adb5bd; /* "Search results" */
+}
+.playlist-section {
+  background-color: #868e96; /* "Your Playlist" */
+}
+.logo {
+  width: 100px;
+  margin-bottom: 20px;
+}
 
+/********************************** Audio Player ****************************************/
 /* Container */
 #container {
     text-align: center;
@@ -168,14 +166,14 @@
     height: 37px;
     background-image: url('/play.png');
     background-size: cover;
-    margin-right: 10px;
+    margin-right: 14px;
 }
 
 /* Progress Bar Container */
 #progressContainer {
     width: 50%;
     height: 6px;
-    background-color: #f0f0f0;
+    background-color: #F5F5DC;
     position: relative;
     cursor: pointer;
 }
@@ -185,8 +183,7 @@
     height: 100%;
     background-color: #4caf50;
     width: 0;
-    transition: width 0.1s ease-in-out;
-
+    transition: width 0.1s linear;
 }
 
 /* Thumb */
@@ -202,27 +199,24 @@
     pointer-events: none;
 }
 
-
 /* Time Info */
 #timeInfo {
     margin: 5px 0;
     font-size: 16px;
-    margin-right: 10px;
+    margin-right: 70px;
+    margin-left: 17px;
 }
 
-/* Reguły dla suwaka głośności */
 .volume-slider {
-    width: 20%; /* Dostosuj szerokość suwaka do preferencji */
-    margin-left: 10px; /* Dodaj odstęp między suwakiem a paskiem postępu */
-    transform: translateY(-50%); /* Wycentruj suwak względem paska postępu */
-    float: right; /* Umieść suwak po prawej stronie */
+    transform: translateY(-50%);
+    float: right;
 }
 
-/* Reguły dla ikonki głośnika */
 #volume-icon {
     width: 25px;
     height: auto;
-    margin-right: 10px; /* Dodaj odstęp między ikonką a suwakiem głośności */
+    margin-left: 50px;
+    margin-right: 20px;
     cursor: pointer;
     float: right;
 }
@@ -230,11 +224,14 @@
 #volumeButton {
     width: 25px;
     height: 25px;
-    background-image: url('/static/assets/img/volume-up.svg'); /* Dla głośności powyżej zera */
+    margin-left: 50px;
+    margin-right: 3px;
+    background-image: url('/static/assets/img/volume-up.svg');
     background-size: cover;
     cursor: pointer;
+    filter: invert(1);
 }
 
 #volumeButton.muted {
-    background-image: url('/static/assets/img/volume-mute.svg'); /* Dla wyciszenia (głośność równa zero) */
+    background-image: url('/static/assets/img/volume-mute.svg');
 }
