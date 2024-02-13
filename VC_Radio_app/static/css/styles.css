@@ -81,30 +81,7 @@
     margin-right: 10px;
 }
 
-<<<<<<< HEAD
 
-=======
-#progressContainer {
-    width: 50%;
-    height: 30px;
-    background-color: #f0f0f0;
-    position: relative;
-    cursor: pointer;
-}
-
-#progressBar {
-    height: 100%;
-    background-color: #4caf50;
-    width: 0;
-    transition: width 0.1s ease-in-out;
-}
-
-#timeInfo {
-    margin: 5px 0;
-    font-size: 16px;
-    margin-right: 10px;
-}
->>>>>>> a1507c8 (Add ytPlayer to footer with example audio)
 
 #alternative-link a {
     display: flex;
@@ -124,7 +101,6 @@
 #alternative-link p {
     margin: 0;
     text-align: center;
-<<<<<<< HEAD
 }
 
 #progressContainer {
@@ -165,6 +141,3 @@
 
 }
 
-=======
-}
->>>>>>> a1507c8 (Add ytPlayer to footer with example audio)
