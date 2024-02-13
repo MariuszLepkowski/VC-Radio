@@ -4,52 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VC-Radio</title>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    /* Dodatkowe style CSS */
-    .sidebar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 250px; /* Szerokość panelu bocznego */
-      background-color: #f8f9fa; /* Kolor tła panelu bocznego */
-      padding: 20px;
-    }
-    .main-content {
-      margin-left: 270px; /* Dopełnienie marginesu dla panelu bocznego */
-      padding: 20px;
-    }
-    .footer {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      background-color: #343a40; /* Kolor tła stopki */
-      color: #ffffff; /* Kolor tekstu stopki */
-      text-align: center;
-      padding: 10px 0;
-    }
-    /* Style dla poszczególnych sekcji */
-    .home-section {
-      background-color: #e9ecef; /* Kolor tła sekcji "Home" */
-    }
-    .random-album-section {
-      background-color: #ced4da; /* Kolor tła sekcji "Pick random album" */
-    }
-    .search-results-section {
-      background-color: #adb5bd; /* Kolor tła sekcji "Search results" */
-    }
-    .playlist-section {
-      background-color: #868e96; /* Kolor tła sekcji "Your Playlist" */
-    }
-    .logo {
-      width: 100px; /* Rozmiar logo */
-      margin-bottom: 20px; /* Odstęp między logo a sekcjami */
-    }
-    .playlist-item {
-      padding-left: 20px;
-    }
+
   </style>
 </head>
 <body>
@@ -99,14 +59,38 @@
   <!-- Stopka -->
   <div class="footer">
     <!-- Tutaj umieść odtwarzacz lub inne elementy stopki -->
-    Player controls here
+        <div id="title">Loading...</div>
+
+    <div id="container">
+        <div id="player-controls">
+            <div id="youtube-icon" onclick="togglePlayPause()"></div>
+            <div id="timeInfo">0:00 / 0:00</div>
+            <div id="progressContainer" onclick="seekToTime(event)">
+                <div id="progressBar"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="alternative-link" style="display: none;">
+
+    </div>
+
+    <div data-video="RMx7uHtZbuo" data-autoplay="0" data-loop="1" id="youtube-audio"></div>
+
+    <!-- Modal do odtwarzania audio -->
+    <div id="audio-player-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <iframe id="audio-player-iframe" width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
   </div>
 
   <!-- Bootstrap Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   <!-- Skrypty JavaScript -->
-  <script>
-    // Tutaj dodaj skrypty JavaScript, jeśli potrzebne
-  </script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="{{ url_for('static', filename='js/ytAudioPlayer.js') }}"></script>
+
 </body>
 </html>
