@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VC-Radio</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Dodatkowe style CSS */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 250px; /* Szerokość panelu bocznego */
+      background-color: #f8f9fa; /* Kolor tła panelu bocznego */
+      padding: 20px;
+    }
+    .main-content {
+      margin-left: 270px; /* Dopełnienie marginesu dla panelu bocznego */
+      padding: 20px;
+    }
+    .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #343a40; /* Kolor tła stopki */
+      color: #ffffff; /* Kolor tekstu stopki */
+      text-align: center;
+      padding: 10px 0;
+    }
+    /* Style dla poszczególnych sekcji */
+    .home-section {
+      background-color: #e9ecef; /* Kolor tła sekcji "Home" */
+    }
+    .random-album-section {
+      background-color: #ced4da; /* Kolor tła sekcji "Pick random album" */
+    }
+    .search-results-section {
+      background-color: #adb5bd; /* Kolor tła sekcji "Search results" */
+    }
+    .playlist-section {
+      background-color: #868e96; /* Kolor tła sekcji "Your Playlist" */
+    }
+    .logo {
+      width: 100px; /* Rozmiar logo */
+      margin-bottom: 20px; /* Odstęp między logo a sekcjami */
+    }
+    .playlist-item {
+      padding-left: 20px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Logo VC-Radio -->
+  <div class="sidebar">
+    <img src="vc_radio_logo.png" alt="VC-Radio Logo" class="logo">
+    <ul class="nav flex-column">
+      <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Pick random album</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Search results</a></li>
+      <li class="nav-item">
+        <details>
+          <summary class="nav-link">Your Playlist</summary>
+          <ul class="nav flex-column playlist-item">
+            <li class="nav-item">Track 1</li>
+            <li class="nav-item">Track 2</li>
+            <li class="nav-item">Track 3</li>
+          </ul>
+        </details>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Główna treść -->
+  <div class="main-content">
+    <!-- Sekcja "Home" -->
+    <section class="home-section">
+      <!-- Treść dla sekcji "Home" -->
+    </section>
+
+    <!-- Sekcja "Pick random album" -->
+    <section class="random-album-section">
+      <!-- Treść dla sekcji "Pick random album" -->
+    </section>
+
+    <!-- Sekcja "Search results" -->
+    <section class="search-results-section">
+      <!-- Treść dla sekcji "Search results" -->
+    </section>
+
+    <!-- Sekcja "Your Playlist" -->
+    <section class="playlist-section">
+      <!-- Treść dla sekcji "Your Playlist" -->
+    </section>
+  </div>
+
+  <!-- Stopka -->
+  <div class="footer">
+    <!-- Tutaj umieść odtwarzacz lub inne elementy stopki -->
+    Player controls here
+  </div>
+
+  <!-- Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Skrypty JavaScript -->
+  <script>
+    // Tutaj dodaj skrypty JavaScript, jeśli potrzebne
+  </script>
+</body>
+</html>
