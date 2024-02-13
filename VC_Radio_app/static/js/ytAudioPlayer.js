@@ -83,8 +83,11 @@ function updateTimeInfo() {
 function updateUI() {
     var durationElement = document.getElementById('timeInfo');
     var progressBar = document.getElementById('progressBar');
+    var progressThumb = document.getElementById('progressThumb');
+    var progressContainer = document.getElementById('progressContainer');
     var progressPercentage = (currentTime / duration) * 100;
     progressBar.style.width = progressPercentage + '%';
+    progressThumb.style.left = (progressPercentage - 1) + '%'; // Ustawiamy pozycję kółka (odejmujemy połowę szerokości)
 
     var youtubeIcon = document.getElementById('youtube-icon');
     youtubeIcon.style.backgroundImage = 'url(' + (isPlaying ? '/static/assets/img/pause.png' : '/static/assets/img/play.png') + ')';
@@ -94,6 +97,7 @@ function updateUI() {
 
     updateTitle();
 }
+
 
 function updateTitle() {
     var currentTitleElement = document.getElementById('title');
@@ -127,42 +131,4 @@ function showAlternativeLink(videoId) {
 
     var loadingDiv = document.getElementById('title');
     loadingDiv.style.display = 'none';
-}
-
-// Load modal and close button
-var modal = document.getElementById('playlist-modal');
-var closeBtn = document.getElementsByClassName('close')[0];
-
-// Function to display modal
-function displayModal() {
-    modal.style.display = 'block';
-}
-
-// Function to close modal when close button or outside modal is clicked
-closeBtn.onclick = function() {
-    modal.style.display = 'none';
-}
-
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = 'none';
-    }
-}
-
-// Function to add track to playlist
-function addToPlaylist(url) {
-    // Get existing playlist from browser's memory (if exists)
-    var playlist = JSON.parse(localStorage.getItem('playlist')) || [];
-    // Add new URL to playlist
-    playlist.push(url);
-    // Save updated playlist back to browser's memory
-    localStorage.setItem('playlist', JSON.stringify(playlist));
-    // Display playlist
-    displayPlaylist(playlist);
-    // Display modal if it's the first track added
-    if (playlist.length === 1) {
-        displayModal();
-    }
-    // Confirmation message for adding to playlist
-    alert('Track has been added to your playlist!');
 }
