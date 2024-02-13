@@ -1,73 +1,4 @@
-/* Container */
-#container {
-    text-align: center;
-    margin-top: 20px;
-}
 
-/* Title */
-#title {
-    font-size: 21px;
-    font-weight: bold;
-    margin: 8px auto;
-    text-align: center;
-}
-
-/* Player Controls */
-#player-controls {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 15px;
-}
-
-/* YouTube Icon */
-#youtube-icon {
-    cursor: pointer;
-    width: 37px;
-    height: 37px;
-    background-image: url('/play.png');
-    background-size: cover;
-    margin-right: 10px;
-}
-
-/* Progress Bar Container */
-#progressContainer {
-    width: 50%;
-    height: 6px;
-    background-color: #f0f0f0;
-    position: relative;
-    cursor: pointer;
-}
-
-/* Progress Bar */
-#progressBar {
-    height: 100%;
-    background-color: #4caf50;
-    width: 0;
-    transition: width 0.1s ease-in-out;
-
-}
-
-/* Thumb */
-#progressThumb {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 19px;
-    height: 19px;
-    background-color: #FF8C00;
-    border-radius: 50%;
-    border: 2px solid #0000CD;
-    pointer-events: none;
-}
-
-
-/* Time Info */
-#timeInfo {
-    margin: 5px 0;
-    font-size: 16px;
-    margin-right: 10px;
-}
 
 /* Alternative Link */
 #alternative-link a {
@@ -206,3 +137,104 @@
       width: 100px; /* Rozmiar logo */
       margin-bottom: 20px; /* Odstęp między logo a sekcjami */
     }
+
+
+/* Container */
+#container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Title */
+#title {
+    font-size: 21px;
+    font-weight: bold;
+    margin: 8px auto;
+    text-align: center;
+}
+
+/* Player Controls */
+#player-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+/* YouTube Icon */
+#youtube-icon {
+    cursor: pointer;
+    width: 37px;
+    height: 37px;
+    background-image: url('/play.png');
+    background-size: cover;
+    margin-right: 10px;
+}
+
+/* Progress Bar Container */
+#progressContainer {
+    width: 50%;
+    height: 6px;
+    background-color: #f0f0f0;
+    position: relative;
+    cursor: pointer;
+}
+
+/* Progress Bar */
+#progressBar {
+    height: 100%;
+    background-color: #4caf50;
+    width: 0;
+    transition: width 0.1s ease-in-out;
+
+}
+
+/* Thumb */
+#progressThumb {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 19px;
+    height: 19px;
+    background-color: #FF8C00;
+    border-radius: 50%;
+    border: 2px solid #0000CD;
+    pointer-events: none;
+}
+
+
+/* Time Info */
+#timeInfo {
+    margin: 5px 0;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+/* Reguły dla suwaka głośności */
+.volume-slider {
+    width: 20%; /* Dostosuj szerokość suwaka do preferencji */
+    margin-left: 10px; /* Dodaj odstęp między suwakiem a paskiem postępu */
+    transform: translateY(-50%); /* Wycentruj suwak względem paska postępu */
+    float: right; /* Umieść suwak po prawej stronie */
+}
+
+/* Reguły dla ikonki głośnika */
+#volume-icon {
+    width: 25px;
+    height: auto;
+    margin-right: 10px; /* Dodaj odstęp między ikonką a suwakiem głośności */
+    cursor: pointer;
+    float: right;
+}
+
+#volumeButton {
+    width: 25px;
+    height: 25px;
+    background-image: url('/static/assets/img/volume-up.svg'); /* Dla głośności powyżej zera */
+    background-size: cover;
+    cursor: pointer;
+}
+
+#volumeButton.muted {
+    background-image: url('/static/assets/img/volume-mute.svg'); /* Dla wyciszenia (głośność równa zero) */
+}

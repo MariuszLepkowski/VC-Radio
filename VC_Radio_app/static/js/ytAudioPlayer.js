@@ -2,6 +2,7 @@ var duration;
 var currentTime;
 var player;
 var isPlaying = false;
+var previousVolume; // Zmienna globalna do przechowywania poprzedniej głośności
 
 function onYouTubeIframeAPIReady() {
     var e = document.getElementById("youtube-audio");
@@ -27,6 +28,7 @@ function onYouTubeIframeAPIReady() {
                 updateUI();
                 setInterval(updateTimeInfo, 1000);
                 startTitleChecking();
+                updateVolumeIcon(); // Dodajemy wywołanie funkcji w momencie gotowości odtwarzacza
             },
             onStateChange: function (e) {
                 if (e.data === YT.PlayerState.ENDED) {
@@ -40,7 +42,8 @@ function onYouTubeIframeAPIReady() {
             },
             onError: function (e) {
                 showAlternativeLink(e.target.getVideoData().video_id);
-            }
+            },
+            onVolumeChange: updateVolumeIcon // Dodane wywołanie funkcji przy zmianie głośności
         }
     });
 }
@@ -97,7 +100,6 @@ function updateUI() {
 
     updateTitle();
 }
-
 
 function updateTitle() {
     var currentTitleElement = document.getElementById('title');
@@ -171,27 +173,115 @@ function addToPlaylist(url) {
     alert('Track has been added to your playlist!');
 }
 
-// Funkcja do wyświetlania odtwarzacza audio
-    function displayAudioPlayer(videoId) {
-        var modal = document.getElementById('audio-player-modal');
-        var iframe = document.getElementById('audio-player-iframe');
-        iframe.src = 'https://www.youtube.com/embed/' + videoId;
-        modal.style.display = 'block';
-    }
+// Function to display audio player
+function displayAudioPlayer(videoId) {
+    var modal = document.getElementById('audio-player-modal');
+    var iframe = document.getElementById('audio-player-iframe');
+    iframe.src = 'https://www.youtube.com/embed/' + videoId;
+    modal.style.display = 'block';
+}
 
-    // Funkcja do zamykania odtwarzacza audio
-    function closeAudioPlayer() {
-        var modal = document.getElementById('audio-player-modal');
-        modal.style.display = 'none';
-    }
+// Function to close audio player
+function closeAudioPlayer() {
+    var modal = document.getElementById('audio-player-modal');
+    modal.style.display = 'none';
+}
 
-    // Pobierz wszystkie przyciski "Play track"
-    var playTrackButtons = document.querySelectorAll('.play-track-btn');
+// Get all "Play track" buttons
+var playTrackButtons = document.querySelectorAll('.play-track-btn');
 
-    // Dodaj obsługę zdarzenia kliknięcia dla każdego przycisku
-    playTrackButtons.forEach(function(button) {
-        button.addEventListener('click', function() {
-            var videoId = button.dataset.url;
-            displayAudioPlayer(videoId);
-        });
+// Add click event handling for each button
+playTrackButtons.forEach(function(button) {
+    button.addEventListener('click', function() {
+        var videoId = button.dataset.url;
+        displayAudioPlayer(videoId);
     });
+});
+
+// Function to update volume button based on volume slider value
+function updateVolumeButton() {
+    var volumeSlider = document.getElementById('volumeSlider');
+    var volumeButton = document.getElementById('volumeButton');
+
+    if (player.isMuted() || player.getVolume() === 0) {
+        volumeButton.classList.add('muted');
+    } else {
+        volumeButton.classList.remove('muted');
+    }
+}
+
+// Call the function to update volume button after each volume change
+document.getElementById('volumeSlider').addEventListener('input', updateVolumeButton);
+
+// Function to change volume
+function changeVolume(volume) {
+    var volumeSlider = document.getElementById('volumeSlider');
+    var volumeButton = document.getElementById('volumeButton');
+
+    if (volume === 0) {
+        volumeButton.classList.add('muted'); // Dodaj klasę muted dla przycisku głośności
+        volumeSlider.value = 0; // Ustaw suwak głośności na zero
+        player.mute(); // Wycisz odtwarzacz, jeśli głośność wynosi zero
+    } else {
+        volumeButton.classList.remove('muted'); // Usuń klasę muted dla przycisku głośności
+        volumeSlider.value = volume; // Ustaw wartość suwaka głośności na aktualną wartość
+        player.unMute(); // Włącz dźwięk, jeśli głośność jest większa niż zero
+    }
+
+    player.setVolume(volume); // Ustaw głośność odtwarzacza na nową wartość
+}
+
+// Function to update volume slider value based on current player volume
+function updateVolumeSlider() {
+    var volumeSlider = document.getElementById('volumeSlider');
+    if (player && volumeSlider) {
+        var currentVolume = player.getVolume();
+        volumeSlider.value = currentVolume;
+    }
+}
+
+// Call the function to update volume slider after the player is ready
+player.addEventListener('onReady', updateVolumeSlider);
+
+// Function to toggle mute/unmute
+function toggleMute() {
+    var volumeSlider = document.getElementById('volumeSlider');
+    var volumeButton = document.getElementById('volumeButton');
+
+    if (player.isMuted()) {
+        player.unMute(); // Wyłącz tryb wyciszenia
+        volumeButton.classList.remove('muted'); // Usuń klasę muted dla przycisku głośności
+        volumeSlider.value = previousVolume; // Przywróć poprzednią wartość głośności
+        changeVolume(previousVolume); // Ustaw poprzednią wartość głośności
+    } else {
+        previousVolume = volumeSlider.value; // Zapamiętaj poprzednią wartość głośności
+        player.mute(); // Włącz tryb wyciszenia
+        volumeButton.classList.add('muted'); // Dodaj klasę muted dla przycisku głośności
+        volumeSlider.value = 0; // Ustaw suwak głośności na zero
+        changeVolume(0); // Ustaw głośność na zero
+    }
+}
+
+// Add event handling for the volume icon click
+document.getElementById('volume-icon').addEventListener('click', function() {
+    toggleMute();
+});
+
+// Function to update volume icon based on player's mute status and volume level
+function updateVolumeIcon() {
+    var volumeButton = document.getElementById('volumeButton');
+    var volumeIcon = document.getElementById('volume-icon');
+    var volumeSlider = document.getElementById('volumeSlider'); // Dodajemy pobranie elementu suwaka głośności
+
+    if (player.isMuted() || player.getVolume() === 0 || volumeSlider.value == 0) {
+        volumeIcon.src = '/static/assets/img/volume-mute.png'; // Set the icon to muted when the player is muted or volume is 0
+    } else {
+        volumeIcon.src = '/static/assets/img/volume-up.png'; // Otherwise, set the icon to volume up
+    }
+}
+
+// Call the function to update volume icon after each volume change
+player.addEventListener('onVolumeChange', updateVolumeIcon);
+
+// Call the function to update volume icon after the player is ready
+player.addEventListener('onReady', updateVolumeIcon);
