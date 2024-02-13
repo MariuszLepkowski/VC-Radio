@@ -45,8 +45,11 @@
     width: 100px; /* Rozmiar logo */
     margin-bottom: 20px; /* Odstęp między logo a sekcjami */
 }
+    .playlist-item {
+      padding-left: 20px;
+    }
 
-/* yt-player */
+/* Player */
 #container {
     text-align: center;
     margin-top: 20px;
@@ -78,26 +81,7 @@
     margin-right: 10px;
 }
 
-#progressContainer {
-    width: 50%;
-    height: 30px;
-    background-color: #f0f0f0;
-    position: relative;
-    cursor: pointer;
-}
 
-#progressBar {
-    height: 100%;
-    background-color: #4caf50;
-    width: 0;
-    transition: width 0.1s ease-in-out;
-}
-
-#timeInfo {
-    margin: 5px 0;
-    font-size: 16px;
-    margin-right: 10px;
-}
 
 #alternative-link a {
     display: flex;
@@ -118,3 +102,42 @@
     margin: 0;
     text-align: center;
 }
+
+#progressContainer {
+    width: 50%;
+    height: 10px;
+    background-color: #f0f0f0;
+    position: relative;
+    cursor: pointer;
+}
+
+#progressBar {
+    height: 100%;
+    background-color: #4caf50;
+    width: 0;
+    transition: width 0.1s ease-in-out;
+}
+
+#timeInfo {
+    margin: 5px 0;
+    font-size: 16px;
+    margin-right: 20px;
+    margin-left: 5px;
+}
+
+/* Thumb */
+
+#progressThumb {
+    width: 20px; /* szerokość kółka */
+    height: 20px; /* wysokość kółka */
+    background-color: #FF8C00; /* kolor kółka */
+    border-radius: 50%; /* kształt kółka */
+    border: 2px solid #00008B;
+    position: absolute; /* pozycjonowanie absolutne */
+    top: 50%; /* ustawienie na środku paska postępu */
+    transform: translateY(-50%); /* wyśrodkowanie w pionie */
+    left: 0; /* ustawienie na początku paska postępu */
+    cursor: pointer; /* zmiana kursora na wskaźnik */
+
+}
+
