@@ -249,22 +249,23 @@ player.addEventListener('onReady', updateVolumeSlider);
 
 
 
-// Function to toggle mute/unmute
+var previousVolume = 100;
+
 function toggleMute() {
     var volumeSlider = document.getElementById('volumeSlider');
     var volumeButton = document.getElementById('volumeButton');
 
     if (player.isMuted()) {
+
         player.unMute();
         volumeButton.classList.remove('muted');
         volumeSlider.value = previousVolume;
-        changeVolume(previousVolume);
+        player.setVolume(previousVolume);
     } else {
         previousVolume = volumeSlider.value;
         player.mute();
         volumeButton.classList.add('muted');
         volumeSlider.value = 0;
-        changeVolume(0);
     }
 }
 
@@ -430,5 +431,4 @@ function updateVolumeIcon() {
 }
 
 
-// Dodaj event listener do aktualizacji ikony głośności gdy wartość suwaka głośności się zmienia
 document.getElementById('volumeSlider').addEventListener('input', updateVolumeIcon);
