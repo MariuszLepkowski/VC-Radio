@@ -413,3 +413,22 @@ document.getElementById('progressContainer').addEventListener('mousedown', funct
     // Add event listener for mouseup to stop dragging
     document.addEventListener('mouseup', handleMouseUp);
 });
+
+
+function updateVolumeIcon() {
+    var volumeButton = document.getElementById('volumeButton');
+    if (volumeButton) {
+        var volumeSlider = document.getElementById('volumeSlider');
+        var volumeValue = parseInt(volumeSlider.value);
+
+        if (volumeValue === 0) {
+            volumeButton.classList.add('muted');
+        } else {
+            volumeButton.classList.remove('muted');
+        }
+    }
+}
+
+
+// Dodaj event listener do aktualizacji ikony głośności gdy wartość suwaka głośności się zmienia
+document.getElementById('volumeSlider').addEventListener('input', updateVolumeIcon);
