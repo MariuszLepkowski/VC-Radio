@@ -48,7 +48,7 @@
 /* Open Playlist Button */
 #open-playlist-btn {
     position: fixed;
-    bottom: 20px;
+    bottom: 180px;
     right: 20px;
     z-index: 1000;
 }

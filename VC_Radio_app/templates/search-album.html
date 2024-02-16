@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>VC-Radio</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
-</head>
-<body>
+{% include "header.html" %}
+
+{% include "menu-sidebar.html" %}
+<div class="main-content">
 <div id="header">
     <h1>Randomly picked album with Vinnie:</h1>
     <h2>{{ album.artist }} - "{{ album.album_title }}"  ({{ album.year }})</h2>
@@ -14,6 +10,7 @@
 <br>
 
 <button onclick="toggleSearchResults(this)">Show search results</button>
+
 <div id="search-results" class="hidden">
 
     {% if results.yt_music_album[1] %}
@@ -90,14 +87,6 @@
 <!-- Button to open playlist -->
 <button onclick="openPlaylist()" id="open-playlist-btn">Open Playlist</button>
 
-
-<!-- Playlist dialog -->
-<div id="content">
-    <!-- Your content here -->
-
-    <!-- Button to open playlist -->
-    <button onclick="openPlaylist()" id="open-playlist-btn">Open Playlist</button>
-
     <!-- Playlist dialog -->
     <div id="playlist-dialog" class="playlist-dialog" style="display: none;">
         <span class="close" onclick="closePlaylist()">&times;</span>
@@ -106,10 +95,10 @@
             <!-- Each track will be displayed here -->
         </ul>
     </div>
+
 </div>
 
-<script src="{{ url_for('static', filename='js/playlist.js') }}"></script>
-<script src="{{ url_for('static', filename='js/searchResults.js') }}"></script>
 
-</body>
-</html>
+{% include "player.html" %}
+
+{% include "scripts.html" %}
