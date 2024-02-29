@@ -37,6 +37,6 @@ def search_album():
         except IndexError:
             print("An error occurred.")
 
-        return render_template('search-album.html', album=picked_album, results=search_results_info)
+        return picked_album, search_results_info
 
-    return render_template('search-album.html', album=None, results=search_results_info)
+    return None, search_results_info

@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request
 from VC_discography_scraper.discography_downloader import DiscographyDownloader
-from VC_Radio_app.yt_search import search_album_on_ytmusic, search_playlist_on_ytmusic, search_video_on_yt, search_playlist_on_yt
+from VC_Radio_app.utils.yt_search_utils import search_album_on_ytmusic, search_playlist_on_ytmusic, search_video_on_yt, search_playlist_on_yt
 
 
 DISCOGRAPHY_URL = "https://vinniecolaiuta.com/Home/GetPageOfRecordings?page="
