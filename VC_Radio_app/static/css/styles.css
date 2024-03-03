@@ -21,39 +21,6 @@
     text-align: center;
 }
 
-/* Playlist Dialog */
-.playlist-dialog {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
-    background-color: #f1f1f1;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    max-height: 80%;
-    overflow-y: auto;
-    cursor: move; /* Cursor for dragging */
-}
-
-/* Close Button */
-.playlist-dialog .close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-}
-
-/* Open Playlist Button */
-#open-playlist-btn {
-    position: fixed;
-    bottom: 180px;
-    right: 20px;
-    z-index: 1000;
-}
-
-
 
 .hidden {
     display: none;

@@ -6,7 +6,7 @@
 
 <br>
 
-<button onclick="toggleSearchResults(this)">Show search results</button>
+<button class="btn btn-primary btn-lg" onclick="toggleSearchResults(this)">Show search results</button>
     <br><br><br><br>
 
 
@@ -15,7 +15,7 @@
     {% if results.yt_music_album[1] %}
         <h2>Albums found on yt music:</h2>
         {% for album in results.yt_music_album[1] %}
-            <p> {{ album.ytMusicAlbumArtist }} - "{{ album.ytMusicAlbumTitle }}" </p> <button onclick="toggleTracklist(this)">Show tracklist</button>
+            <p> {{ album.ytMusicAlbumArtist }} - "{{ album.ytMusicAlbumTitle }}" </p> <button class="btn btn-secondary" onclick="toggleTracklist(this)">Show tracklist</button>
 
             <div class="tracklist hidden">
                 {% for track in album.AlbumTracklist %}
@@ -30,7 +30,7 @@
     {% if results.yt_music_playlist[1] %}
         <h2>Playlists found on yt music:</h2>
         {% for playlist in results.yt_music_playlist[1] %}
-            <p> <a href="{{ playlist.ytMusicPlaylistURL }}">{{ playlist.ytMusicPlaylistTitle }}</a></p> <button onclick="toggleTracklist(this)">Show tracklist</button>
+            <p> <a href="{{ playlist.ytMusicPlaylistURL }}">{{ playlist.ytMusicPlaylistTitle }}</a></p> <button class="btn btn-secondary" onclick="toggleTracklist(this)">Show tracklist</button>
 
 
             <div class="tracklist hidden">
@@ -46,7 +46,7 @@
     {% if results.yt_playlist[1] %}
         <h2>Playlists found on yt:</h2>
         {% for playlist in results.yt_playlist[1] %}
-            <p> <a href="{{ playlist.YouTubePlaylistUrl }}">{{ playlist.YouTubePlaylistTitle }}</a></p> <button onclick="toggleTracklist(this)">Show tracklist</button>
+            <p> <a href="{{ playlist.YouTubePlaylistUrl }}">{{ playlist.YouTubePlaylistTitle }}</a></p> <button class="btn btn-secondary" onclick="toggleTracklist(this)">Show tracklist</button>
 
 
             <div class="tracklist hidden">
@@ -62,7 +62,7 @@
     {% if results.yt_video[1] %}
         <h2>Videos found on yt:</h2>
 
-        <button onclick="toggleTracklist(this)">Show tracklist</button>
+        <button class="btn btn-secondary" onclick="toggleTracklist(this)">Show tracklist</button>
 
         <div class="tracklist hidden">
 
