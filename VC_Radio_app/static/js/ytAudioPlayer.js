@@ -165,18 +165,6 @@ window.onclick = function(event) {
     }
 }
 
-// Function to add track to playlist
-function addToPlaylist(url) {
-    var playlist = JSON.parse(localStorage.getItem('playlist')) || [];
-    playlist.push(url);
-    localStorage.setItem('playlist', JSON.stringify(playlist));
-    displayPlaylist(playlist);
-    if (playlist.length === 1) {
-        displayModal();
-    }
-    alert('Track has been added to your playlist!');
-}
-
 // Function to display audio player
 function displayAudioPlayer(videoId) {
     var modal = document.getElementById('audio-player-modal');
@@ -292,8 +280,6 @@ document.getElementById('volumeSlider').addEventListener('input', updateVolumeIc
 
 // Call the function to update volume icon after the player is ready
 player.addEventListener('onReady', updateVolumeIcon);
-
-
 
 
 

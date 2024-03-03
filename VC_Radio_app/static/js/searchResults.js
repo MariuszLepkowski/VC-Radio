@@ -9,3 +9,14 @@ function toggleSearchResults(button) {
         button.textContent = 'Show search results';
     }
 }
+// Function to toggle tracklist visibility
+function toggleTracklist(button) {
+    var tracklist = button.nextElementSibling;
+    if (tracklist.classList.contains('hidden')) {
+        tracklist.classList.remove('hidden');
+        button.textContent = 'Hide tracklist';
+    } else {
+        tracklist.classList.add('hidden');
+        button.textContent = 'Show tracklist';
+    }
+}

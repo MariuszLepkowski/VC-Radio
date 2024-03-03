@@ -53,6 +53,8 @@
     z-index: 1000;
 }
 
+
+
 .hidden {
     display: none;
 }
@@ -108,7 +110,9 @@
 .main-content {
   margin-left: 270px;
   padding: 20px;
+  padding-bottom: 120px;
 }
+
 .footer {
   position: fixed;
   bottom: 0;
@@ -118,6 +122,8 @@
   text-align: center;
   padding: 10px 0;
 }
+
+
 /**************************** Styles for all sections ***********************************/
 .home-section {
   background-color: #e9ecef; /* "Home" */

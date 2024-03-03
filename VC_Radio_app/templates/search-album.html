@@ -7,61 +7,56 @@
 <br>
 
 <button onclick="toggleSearchResults(this)">Show search results</button>
+    <br><br><br><br>
+
 
 <div id="search-results" class="hidden">
 
     {% if results.yt_music_album[1] %}
         <h2>Albums found on yt music:</h2>
         {% for album in results.yt_music_album[1] %}
-            <p> {{ album.ytMusicAlbumArtist }} - "{{ album.ytMusicAlbumTitle }}" </p>
-
-            <button onclick="toggleTracklist(this)">Show tracklist</button>
+            <p> {{ album.ytMusicAlbumArtist }} - "{{ album.ytMusicAlbumTitle }}" </p> <button onclick="toggleTracklist(this)">Show tracklist</button>
 
             <div class="tracklist hidden">
                 {% for track in album.AlbumTracklist %}
-                    <p>{{ track.trackNumber }}. <a href="{{ track.trackURL }}">{{ track.trackTitle }}</a>
-                        <button onclick="addToPlaylist('{{ track.trackURL }}', '{{ track.trackTitle }}')">Add to Playlist</button>
-                    </p>
+                    <p>{{ track.trackNumber }}. <a href="{{ track.trackURL }}">{{ track.trackTitle }}</a></p>
                 {% endfor %}
             </div>
-            <br>
+    <br><br><br><br>
         {% endfor %}
+    <br><br>
     {% endif %}
 
     {% if results.yt_music_playlist[1] %}
         <h2>Playlists found on yt music:</h2>
         {% for playlist in results.yt_music_playlist[1] %}
-            <p> <a href="{{ playlist.ytMusicPlaylistURL }}">{{ playlist.ytMusicPlaylistTitle }}</a></p>
+            <p> <a href="{{ playlist.ytMusicPlaylistURL }}">{{ playlist.ytMusicPlaylistTitle }}</a></p> <button onclick="toggleTracklist(this)">Show tracklist</button>
 
-            <button onclick="toggleTracklist(this)">Show tracklist</button>
 
             <div class="tracklist hidden">
                 {% for track in playlist.PlaylistTracklist %}
-                    <p>{{ track.trackNumber }}. <a href="{{ track.trackURL }}">{{ track.trackTitle }}</a>
-                        <button onclick="addToPlaylist('{{ track.trackURL }}', '{{ track.trackTitle }}')">Add to Playlist</button>
-                    </p>
+                    <p>{{ track.trackNumber }}. <a href="{{ track.trackURL }}">{{ track.trackTitle }}</a></p>
                 {% endfor %}
             </div>
-            <br>
+    <br><br><br><br>
         {% endfor %}
+    <br><br>
     {% endif %}
 
     {% if results.yt_playlist[1] %}
         <h2>Playlists found on yt:</h2>
         {% for playlist in results.yt_playlist[1] %}
-            <p> <a href="{{ playlist.YouTubePlaylistUrl }}">{{ playlist.YouTubePlaylistTitle }}</a> </p>
+            <p> <a href="{{ playlist.YouTubePlaylistUrl }}">{{ playlist.YouTubePlaylistTitle }}</a></p> <button onclick="toggleTracklist(this)">Show tracklist</button>
 
-            <button onclick="toggleTracklist(this)">Show tracklist</button>
 
             <div class="tracklist hidden">
                 {% for track in playlist.yt_playlist_tracklist %}
-                    <p>{{ track.video_num }}. <a href="{{ track.video_url }}">{{ track.video_title }}</a>
-                        <button onclick="addToPlaylist('{{ track.video_url }}', '{{ track.video_title }}')">Add to Playlist</button>
-                    </p>
+                    <p>{{ track.video_num }}. <a href="{{ track.video_url }}">{{ track.video_title }}</a></p>
                 {% endfor %}
             </div>
-            <br>
+            <br><br><br><br>
         {% endfor %}
+    <br><br><br><br>
     {% endif %}
 
     {% if results.yt_video[1] %}
@@ -70,27 +65,16 @@
         <button onclick="toggleTracklist(this)">Show tracklist</button>
 
         <div class="tracklist hidden">
+
             {% for video in results.yt_video[1] %}
-                <p> <a href="{{ video.YouTubeVideoUrl }}">{{ video.YouTubeVideoTitle }}</a>
-                    <button onclick="addToPlaylist('{{ video.YouTubeVideoUrl }}', '{{ video.YouTubeVideoTitle }}')">Add to Playlist</button>
-                </p>
+                <p> <a href="{{ video.YouTubeVideoUrl }}">{{ video.YouTubeVideoTitle }}</a></p>
             {% endfor %}
         </div>
-        <br>
+        <br><br><br><br>
     {% endif %}
 
 </div>
 
-<!-- Button to open playlist -->
-<button onclick="openPlaylist()" id="open-playlist-btn">Open Playlist</button>
 
-    <!-- Playlist dialog -->
-    <div id="playlist-dialog" class="playlist-dialog" style="display: none;">
-        <span class="close" onclick="closePlaylist()">&times;</span>
-        <h2>Your Playlist</h2>
-        <ul id="playlist">
-            <!-- Each track will be displayed here -->
-        </ul>
-    </div>
 
 </div>
