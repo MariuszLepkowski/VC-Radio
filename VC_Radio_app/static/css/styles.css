@@ -109,6 +109,10 @@
   margin-bottom: 20px;
 }
 
+.btn-outline-danger {
+    margin-left: 15px;
+}
+
 /********************************** Audio Player ****************************************/
 /* Container */
 #container {

@@ -19,7 +19,17 @@
 
             <div class="tracklist hidden">
                 {% for track in album.AlbumTracklist %}
-                    <p>{{ track.trackNumber }}. <a href="{{ track.trackURL }}">{{ track.trackTitle }}</a></p>
+                    <p>{{ track.trackNumber }}. <a href="{{ track.trackURL }}">{{ track.trackTitle }}</a>
+
+                        <button type="button" class="btn btn-outline-danger">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play" viewBox="0 0 16 16" style="--darkreader-inline-fill: currentColor;" data-darkreader-inline-fill="">
+                                <path d="M10.804 8 5 4.633v6.734zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696z"></path>
+                            </svg>
+                            Play track
+                        </button>
+
+                    </p>
+
                 {% endfor %}
             </div>
     <br><br><br><br>
@@ -35,7 +45,17 @@
 
             <div class="tracklist hidden">
                 {% for track in playlist.PlaylistTracklist %}
-                    <p>{{ track.trackNumber }}. <a href="{{ track.trackURL }}">{{ track.trackTitle }}</a></p>
+                    <p>{{ track.trackNumber }}. <a href="{{ track.trackURL }}">{{ track.trackTitle }}</a>
+
+                        <button type="button" class="btn btn-outline-danger">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play" viewBox="0 0 16 16" style="--darkreader-inline-fill: currentColor;" data-darkreader-inline-fill="">
+                                <path d="M10.804 8 5 4.633v6.734zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696z"></path>
+                            </svg>
+                            Play track
+                        </button>
+
+                    </p>
+
                 {% endfor %}
             </div>
     <br><br><br><br>
@@ -51,7 +71,17 @@
 
             <div class="tracklist hidden">
                 {% for track in playlist.yt_playlist_tracklist %}
-                    <p>{{ track.video_num }}. <a href="{{ track.video_url }}">{{ track.video_title }}</a></p>
+                    <p>{{ track.video_num }}. <a href="{{ track.video_url }}">{{ track.video_title }}</a>
+
+                        <button type="button" class="btn btn-outline-danger">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play" viewBox="0 0 16 16" style="--darkreader-inline-fill: currentColor;" data-darkreader-inline-fill="">
+                                <path d="M10.804 8 5 4.633v6.734zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696z"></path>
+                            </svg>
+                            Play track
+                        </button>
+
+                    </p>
+
                 {% endfor %}
             </div>
             <br><br><br><br>
@@ -67,7 +97,17 @@
         <div class="tracklist hidden">
 
             {% for video in results.yt_video[1] %}
-                <p> <a href="{{ video.YouTubeVideoUrl }}">{{ video.YouTubeVideoTitle }}</a></p>
+                <p> <a href="{{ video.YouTubeVideoUrl }}">{{ video.YouTubeVideoTitle }}</a>
+
+                    <button type="button" class="btn btn-outline-danger">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play" viewBox="0 0 16 16" style="--darkreader-inline-fill: currentColor;" data-darkreader-inline-fill="">
+                                <path d="M10.804 8 5 4.633v6.734zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696z"></path>
+                            </svg>
+                            Play track
+                    </button>
+
+                </p>
+
             {% endfor %}
         </div>
         <br><br><br><br>
