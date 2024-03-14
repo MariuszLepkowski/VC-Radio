@@ -109,6 +109,10 @@
   margin-bottom: 20px;
 }
 
+.btn-success {
+    margin-left: 15px;
+}
+
 .btn-outline-danger {
     margin-left: 15px;
 }
