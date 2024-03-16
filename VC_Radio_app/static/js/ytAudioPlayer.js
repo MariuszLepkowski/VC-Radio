@@ -154,22 +154,52 @@ function seekToTime(event) {
 }
 
 
-// Function to display an alternative link
 function showAlternativeLink(videoId) {
   var alternativeLinkDiv = document.getElementById('alternative-link');
-  alternativeLinkDiv.style.display = 'block';
-  alternativeLinkDiv.innerHTML = '<p>The audio/video available only on <a href="https://www.youtube.com/watch?v=' + videoId + '" target="_blank"><img id="youtube-logo" src="static/assets/img/YouTubeLogo.png" alt="YouTube Logo"> <br> Click to listen/watch.</a></p>';
-
-  var playerContainer = document.getElementById('container');
-  playerContainer.style.display = 'none';
-
-  var loadingDiv = document.getElementById('title');
-  loadingDiv.style.display = 'none';
+  if (alternativeLinkDiv) {
+    alternativeLinkDiv.style.display = 'block';
+    alternativeLinkDiv.innerHTML = '<p>The audio/video available only on <a href="https://www.youtube.com/watch?v=' + videoId + '" target="_blank"><img id="youtube-logo" src="static/assets/img/YouTubeLogo.png" alt="YouTube Logo"> <br> Click to listen/watch.</a></p>';
+  }
 }
 
 
+/*********************************************************************************************************************************************
+ * PLAY TRACK BUTTONS MANAGEMENT *
+ *********************************************************************************************************************************************/
+var buttons = document.querySelectorAll('.play-button');
+
+function setVideoId(videoId, button) {
+    button.setAttribute('data-video', videoId);
+}
 
 
+// Definicja funkcji, która aktualizuje widok HTML na podstawie zmiany wartości atrybutu 'data-video'
+function updateHTMLView(videoId) {
+    var youtubePlayerIFrame = document.getElementById('youtube-player');
+    var youtubePlayerSrc = "https://www.youtube.com/embed/" + videoId + "?autoplay=0&loop=1&enablejsapi=1";
+    youtubePlayerIFrame.setAttribute('src', youtubePlayerSrc);
+
+    showAlternativeLink(videoId);
+}
+
+
+buttons.forEach(function(button) {
+    button.addEventListener('click', function() {
+        // Pobierz wartość atrybutu 'data-video-id' dla klikniętego przycisku
+        var videoId = button.getAttribute('data-video-id');
+
+        // Ustaw atrybut 'data-video' odtwarzacza na wartość 'videoId'
+        setVideoId(videoId, button);
+
+        // Wywołaj funkcję aktualizującą widok HTML
+        updateHTMLView(videoId);
+        console.log('Zaktualizowano data-video na:', videoId);
+
+        // Teraz możesz wykorzystać 'videoId' do dalszej pracy, np. przekazując go do odtwarzacza wideo
+        console.log('Kliknięto przycisk z identyfikatorem wideo:', videoId);
+
+    });
+});
 
 
 /*********************************************************************************************************************************************
