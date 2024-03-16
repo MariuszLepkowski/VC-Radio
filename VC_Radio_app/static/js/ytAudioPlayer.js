@@ -1,8 +1,13 @@
+/**************************************************************************************************************
+ * PLAYER INITIALIZATION AND PLAYBACK MANAGEMENT *
+ **************************************************************************************************************/
+
 var duration;
 var currentTime;
 var player;
 var isPlaying = false;
 var previousVolume;
+
 
 // Function called when the YouTube Iframe API is ready
 function onYouTubeIframeAPIReady() {
@@ -49,6 +54,8 @@ function onYouTubeIframeAPIReady() {
     });
 }
 
+
+
 // Function to start checking for title availability
 function startTitleChecking() {
     var titleCheckInterval = setInterval(function() {
@@ -61,6 +68,8 @@ function startTitleChecking() {
     }, 1000);
 }
 
+
+
 // Function to check if an element has a title
 function hasTitle(element) {
     if (!element) {
@@ -70,6 +79,8 @@ function hasTitle(element) {
     var titleElement = element.querySelector('#title');
     return titleElement && titleElement.textContent.trim() !== "";
 }
+
+
 
 // Function to toggle play/pause
 function togglePlayPause() {
@@ -82,11 +93,15 @@ function togglePlayPause() {
     updateUI();
 }
 
+
+
 // Function to update time information
 function updateTimeInfo() {
     currentTime = player.getCurrentTime();
     updateUI();
 }
+
+
 
 // Function to update the UI
 function updateUI() {
@@ -107,6 +122,8 @@ function updateUI() {
     updateTitle();
 }
 
+
+
 // Function to update the video title
 function updateTitle() {
     var currentTitleElement = document.getElementById('title');
@@ -116,12 +133,16 @@ function updateTitle() {
     currentTitleElement.textContent = title;
 }
 
+
+
 // Function to format time
 function formatTime(time) {
     var minutes = Math.floor(time / 60);
     var seconds = Math.floor(time % 60);
     return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
 }
+
+
 
 // Function to seek to a specific time
 function seekToTime(event) {
@@ -132,147 +153,122 @@ function seekToTime(event) {
     player.seekTo(seekTime);
 }
 
+
 // Function to display an alternative link
 function showAlternativeLink(videoId) {
-    var alternativeLinkDiv = document.getElementById('alternative-link');
-    alternativeLinkDiv.style.display = 'block';
-    alternativeLinkDiv.innerHTML = '<p>The audio/video available only on <a href="https://www.youtube.com/watch?v=' + videoId + '" target="_blank"><img id="youtube-logo" src="static/assets/img/YouTubeLogo.png" alt="YouTube Logo"> <br> Click to listen/watch.</a></p>';
+  var alternativeLinkDiv = document.getElementById('alternative-link');
+  alternativeLinkDiv.style.display = 'block';
+  alternativeLinkDiv.innerHTML = '<p>The audio/video available only on <a href="https://www.youtube.com/watch?v=' + videoId + '" target="_blank"><img id="youtube-logo" src="static/assets/img/YouTubeLogo.png" alt="YouTube Logo"> <br> Click to listen/watch.</a></p>';
 
-    var playerContainer = document.getElementById('container');
-    playerContainer.style.display = 'none';
+  var playerContainer = document.getElementById('container');
+  playerContainer.style.display = 'none';
 
-    var loadingDiv = document.getElementById('title');
-    loadingDiv.style.display = 'none';
+  var loadingDiv = document.getElementById('title');
+  loadingDiv.style.display = 'none';
 }
 
-// Load modal and close button
-var modal = document.getElementById('playlist-modal');
-var closeBtn = document.getElementsByClassName('close')[0];
 
-// Function to display modal
-function displayModal() {
-    modal.style.display = 'block';
-}
 
-// Function to close modal when close button or outside modal is clicked
-closeBtn.onclick = function() {
-    modal.style.display = 'none';
-}
 
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = 'none';
-    }
-}
 
-// Function to display audio player
-function displayAudioPlayer(videoId) {
-    var modal = document.getElementById('audio-player-modal');
-    var iframe = document.getElementById('audio-player-iframe');
-    iframe.src = 'https://www.youtube.com/embed/' + videoId;
-    modal.style.display = 'block';
-}
 
-// Function to close audio player
-function closeAudioPlayer() {
-    var modal = document.getElementById('audio-player-modal');
-    modal.style.display = 'none';
-}
+/*********************************************************************************************************************************************
+ * VOLUME CONTROL AND VOLUME ICON *
+ *********************************************************************************************************************************************/
 
-// Get all "Play track" buttons
-var playTrackButtons = document.querySelectorAll('.play-track-btn');
-
-// Add click event handling for each button
-playTrackButtons.forEach(function(button) {
-    button.addEventListener('click', function() {
-        var videoId = button.dataset.url;
-        displayAudioPlayer(videoId);
-    });
-});
 
 // Function to update volume button based on volume slider value
 function updateVolumeButton() {
-    var volumeSlider = document.getElementById('volumeSlider');
-    var volumeButton = document.getElementById('volumeButton');
+  var volumeSlider = document.getElementById('volumeSlider');
+  var volumeButton = document.getElementById('volumeButton');
 
-    if (player.isMuted() || player.getVolume() === 0) {
-        volumeButton.classList.add('muted');
-    } else {
-        volumeButton.classList.remove('muted');
-    }
+  if (player.isMuted() || player.getVolume() === 0) {
+      volumeButton.classList.add('muted');
+  } else {
+      volumeButton.classList.remove('muted');
+  }
 }
 
 // Call the function to update volume button after each volume change
 document.getElementById('volumeSlider').addEventListener('input', updateVolumeButton);
 
+
+
+
+
 // Function to change volume
 function changeVolume(volume) {
-    var volumeSlider = document.getElementById('volumeSlider');
-    var volumeButton = document.getElementById('volumeButton');
+  var volumeSlider = document.getElementById('volumeSlider');
+  var volumeButton = document.getElementById('volumeButton');
 
-    if (volume === 0) {
-        volumeButton.classList.add('muted');
-        volumeSlider.value = 0;
-        player.mute();
-    } else {
-        volumeButton.classList.remove('muted');
-        volumeSlider.value = volume;
-        player.unMute();
-    }
+  if (volume === 0) {
+      volumeButton.classList.add('muted');
+      volumeSlider.value = 0;
+      player.mute();
+  } else {
+      volumeButton.classList.remove('muted');
+      volumeSlider.value = volume;
+      player.unMute();
+  }
 
-    player.setVolume(volume);
+  player.setVolume(volume);
 }
+
+
+
 
 // Function to update volume slider value based on current player volume
 function updateVolumeSlider() {
-    var volumeSlider = document.getElementById('volumeSlider');
-    if (player && volumeSlider) {
-        var currentVolume = player.getVolume();
-        volumeSlider.value = currentVolume;
-    }
+  var volumeSlider = document.getElementById('volumeSlider');
+  if (player && volumeSlider) {
+      var currentVolume = player.getVolume();
+      volumeSlider.value = currentVolume;
+  }
 }
 
 // Call the function to update volume slider after the player is ready
 player.addEventListener('onReady', updateVolumeSlider);
 
-
-
 var previousVolume = 100;
 
+
+
 function toggleMute() {
-    var volumeSlider = document.getElementById('volumeSlider');
-    var volumeButton = document.getElementById('volumeButton');
+  var volumeSlider = document.getElementById('volumeSlider');
+  var volumeButton = document.getElementById('volumeButton');
 
-    if (player.isMuted()) {
+  if (player.isMuted()) {
 
-        player.unMute();
-        volumeButton.classList.remove('muted');
-        volumeSlider.value = previousVolume;
-        player.setVolume(previousVolume);
-    } else {
-        previousVolume = volumeSlider.value;
-        player.mute();
-        volumeButton.classList.add('muted');
-        volumeSlider.value = 0;
-    }
+      player.unMute();
+      volumeButton.classList.remove('muted');
+      volumeSlider.value = previousVolume;
+      player.setVolume(previousVolume);
+  } else {
+      previousVolume = volumeSlider.value;
+      player.mute();
+      volumeButton.classList.add('muted');
+      volumeSlider.value = 0;
+  }
 }
 
 // Add event handling for the volume icon click
 document.getElementById('volume-icon').addEventListener('click', function() {
-    toggleMute();
+  toggleMute();
 });
+
+
 
 // Function to update volume icon based on volume slider value
 function updateVolumeIcon() {
-    var volumeIcon = document.getElementById('volume-icon');
-    var volumeSlider = document.getElementById('volumeSlider');
-    var volumeValue = parseInt(volumeSlider.value);
+  var volumeIcon = document.getElementById('volume-icon');
+  var volumeSlider = document.getElementById('volumeSlider');
+  var volumeValue = parseInt(volumeSlider.value);
 
-    if (volumeValue === 0) {
-        volumeIcon.src = '/static/assets/img/volume-mute.png';
-    } else {
-        volumeIcon.src = '/static/assets/img/volume-up.png';
-    }
+  if (volumeValue === 0) {
+      volumeIcon.src = '/static/assets/img/volume-mute.png';
+  } else {
+      volumeIcon.src = '/static/assets/img/volume-up.png';
+  }
 }
 
 // Add event listener to update volume icon when volume slider value changes
@@ -282,6 +278,36 @@ document.getElementById('volumeSlider').addEventListener('input', updateVolumeIc
 player.addEventListener('onReady', updateVolumeIcon);
 
 
+
+
+function updateVolumeIcon() {
+  var volumeButton = document.getElementById('volumeButton');
+  if (volumeButton) {
+      var volumeSlider = document.getElementById('volumeSlider');
+      var volumeValue = parseInt(volumeSlider.value);
+
+      if (volumeValue === 0) {
+          volumeButton.classList.add('muted');
+      } else {
+          volumeButton.classList.remove('muted');
+      }
+  }
+}
+
+
+document.getElementById('volumeSlider').addEventListener('input', updateVolumeIcon);
+
+
+
+
+
+
+
+
+
+/************************************************************************************************************************************************
+ * PROGRESS BAR HANDLING *
+ ************************************************************************************************************************************************/
 
 // Function to move the progress thumb when clicked
 function moveProgressThumb(event) {
@@ -308,6 +334,10 @@ function moveProgressThumb(event) {
 // Add event listener for clicking on the progress container to move the progress thumb
 document.getElementById('progressContainer').addEventListener('click', moveProgressThumb);
 
+
+
+
+
 // Function for smooth transition of the progress thumb
 function smoothMoveProgressThumb() {
     // Get the progress thumb element
@@ -323,6 +353,11 @@ document.getElementById('progressThumb').addEventListener('transitionend', funct
     this.style.transition = '';
 });
 
+
+
+
+
+
 // Function to update the time on seeking
 function updateTimeOnSeek() {
     // Get the current time of the video player
@@ -334,6 +369,11 @@ function updateTimeOnSeek() {
 
 // Add event listener for transition end to update time on seeking
 document.getElementById('progressThumb').addEventListener('transitionend', updateTimeOnSeek);
+
+
+
+
+
 
 // Function to continuously update the progress thumb position based on the current time
 function updateProgressThumb() {
@@ -349,6 +389,7 @@ function updateProgressThumb() {
 
 // Call the function to update the progress thumb position continuously
 setInterval(updateProgressThumb, 100); // Adjust the interval for smoother movement
+
 
 
 
@@ -400,21 +441,3 @@ document.getElementById('progressContainer').addEventListener('mousedown', funct
     // Add event listener for mouseup to stop dragging
     document.addEventListener('mouseup', handleMouseUp);
 });
-
-
-function updateVolumeIcon() {
-    var volumeButton = document.getElementById('volumeButton');
-    if (volumeButton) {
-        var volumeSlider = document.getElementById('volumeSlider');
-        var volumeValue = parseInt(volumeSlider.value);
-
-        if (volumeValue === 0) {
-            volumeButton.classList.add('muted');
-        } else {
-            volumeButton.classList.remove('muted');
-        }
-    }
-}
-
-
-document.getElementById('volumeSlider').addEventListener('input', updateVolumeIcon);
