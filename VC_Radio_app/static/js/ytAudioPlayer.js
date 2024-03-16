@@ -120,6 +120,8 @@ function updateUI() {
     durationElement.textContent = formattedTime;
 
     updateTitle();
+
+
 }
 
 
@@ -176,8 +178,10 @@ function setVideoId(videoId, button) {
 // Definicja funkcji, która aktualizuje widok HTML na podstawie zmiany wartości atrybutu 'data-video'
 function updateHTMLView(videoId) {
     var youtubePlayerIFrame = document.getElementById('youtube-player');
-    var youtubePlayerSrc = "https://www.youtube.com/embed/" + videoId + "?autoplay=0&loop=1&enablejsapi=1";
+    var youtubePlayerSrc = "https://www.youtube.com/embed/" + videoId + "?autoplay=1&loop=1&enablejsapi=1";
     youtubePlayerIFrame.setAttribute('src', youtubePlayerSrc);
+
+    isPlaying = true;
 
     showAlternativeLink(videoId);
 }
@@ -200,6 +204,21 @@ buttons.forEach(function(button) {
 
     });
 });
+
+
+document.getElementById('play-track-btn').addEventListener('click', function() {
+    // Jeśli odtwarzacz jest zatrzymany, klikając przycisk "Play track" rozpocznij odtwarzanie
+    if (!isPlaying) {
+        player.playVideo();
+    } else {
+        // Jeśli odtwarzacz jest w trakcie odtwarzania, klikając przycisk "Play track" zatrzymaj odtwarzanie
+        player.pauseVideo();
+    }
+
+    // Po kliknięciu przycisku "Play track" zaktualizuj interfejs użytkownika
+    updateUI();
+});
+
 
 
 /*********************************************************************************************************************************************
