@@ -2,9 +2,14 @@
 
 {% include "menu-sidebar.html" %}
 
+<div id="home-section" style="display: none;">
+    {% include "home.html" %}
+</div>
 
 
-{% include "search-album.html" %}
+<div id="search-album-section" style="display: none;">
+    {% include "search-album.html" %}
+</div>
 {% include "player.html" %}
 
 {% include "scripts.html" %}

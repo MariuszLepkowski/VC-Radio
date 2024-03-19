@@ -12,7 +12,7 @@
 
 <div id="search-results" class="hidden">
 
-    {% if results.yt_music_album[1] %}
+    {% if results and results.yt_music_album and results.yt_music_album[1] %}
         <h2>Albums found on yt music:</h2>
         {% for album in results.yt_music_album[1] %}
             <p> {{ album.ytMusicAlbumArtist }} - "{{ album.ytMusicAlbumTitle }}" </p> <button class="btn btn-secondary" onclick="toggleTracklist(this)">Show tracklist</button>
@@ -44,7 +44,7 @@
     <br><br>
     {% endif %}
 
-    {% if results.yt_music_playlist[1] %}
+    {% if results and results.yt_music_playlist and results.yt_music_playlist[1] %}
         <h2>Playlists found on yt music:</h2>
         {% for playlist in results.yt_music_playlist[1] %}
             <p>{{ playlist.ytMusicPlaylistTitle }}
@@ -87,7 +87,7 @@
     <br><br>
     {% endif %}
 
-    {% if results.yt_playlist[1] %}
+    {% if results and results.yt_playlist and results.yt_playlist[1] %}
         <h2>Playlists found on yt:</h2>
         {% for playlist in results.yt_playlist[1] %}
             <p> {{ playlist.YouTubePlaylistTitle }}
@@ -129,7 +129,7 @@
     <br><br><br><br>
     {% endif %}
 
-    {% if results.yt_video[1] %}
+    {% if results and results.yt_video and results.yt_video[1] %}
         <h2>Videos found on yt:</h2>
 
         <button class="btn btn-secondary" onclick="toggleTracklist(this)">Show tracklist</button>

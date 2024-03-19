@@ -117,6 +117,20 @@
     margin-left: 15px;
 }
 
+.pick-album-btn {
+    cursor: pointer;
+
+}
+
+.search-results-btn {
+    cursor: pointer;
+}
+
+.home-btn {
+    cursor: pointer;
+
+}
+
 /********************************** Audio Player ****************************************/
 /* Container */
 #container {
