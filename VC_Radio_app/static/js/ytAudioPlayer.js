@@ -170,22 +170,17 @@ function showAlternativeLink(videoId) {
  *********************************************************************************************************************************************/
 var buttons = document.querySelectorAll('.play-button');
 
-function setVideoId(videoId, button) {
-    button.setAttribute('data-video', videoId);
-}
-
 
 // Definicja funkcji, która aktualizuje widok HTML na podstawie zmiany wartości atrybutu 'data-video'
 function updateHTMLView(videoId) {
+    var youtubePlayerDiv = document.getElementById('youtube-audio');
+    youtubePlayerDiv.setAttribute('data-video', videoId);
+
     var youtubePlayerIFrame = document.getElementById('youtube-player');
     var youtubePlayerSrc = "https://www.youtube.com/embed/" + videoId + "?autoplay=1&loop=1&enablejsapi=1";
     youtubePlayerIFrame.setAttribute('src', youtubePlayerSrc);
 
     isPlaying = true;
-
-//    setTimeout(function() {
-//        showAlternativeLink(videoId);
-//    }, 4000);
 }
 
 
@@ -193,9 +188,6 @@ buttons.forEach(function(button) {
     button.addEventListener('click', function() {
         // Pobierz wartość atrybutu 'data-video-id' dla klikniętego przycisku
         var videoId = button.getAttribute('data-video-id');
-
-        // Ustaw atrybut 'data-video' odtwarzacza na wartość 'videoId'
-        setVideoId(videoId, button);
 
         // Wywołaj funkcję aktualizującą widok HTML
         updateHTMLView(videoId);
@@ -245,8 +237,6 @@ document.getElementById('volumeSlider').addEventListener('input', updateVolumeBu
 
 
 
-
-
 // Function to change volume
 function changeVolume(volume) {
   var volumeSlider = document.getElementById('volumeSlider');
@@ -264,7 +254,6 @@ function changeVolume(volume) {
 
   player.setVolume(volume);
 }
-
 
 
 
@@ -330,7 +319,6 @@ player.addEventListener('onReady', updateVolumeIcon);
 
 
 
-
 function updateVolumeIcon() {
   var volumeButton = document.getElementById('volumeButton');
   if (volumeButton) {
@@ -347,10 +335,6 @@ function updateVolumeIcon() {
 
 
 document.getElementById('volumeSlider').addEventListener('input', updateVolumeIcon);
-
-
-
-
 
 
 
@@ -387,8 +371,6 @@ document.getElementById('progressContainer').addEventListener('click', moveProgr
 
 
 
-
-
 // Function for smooth transition of the progress thumb
 function smoothMoveProgressThumb() {
     // Get the progress thumb element
@@ -406,9 +388,6 @@ document.getElementById('progressThumb').addEventListener('transitionend', funct
 
 
 
-
-
-
 // Function to update the time on seeking
 function updateTimeOnSeek() {
     // Get the current time of the video player
@@ -420,9 +399,6 @@ function updateTimeOnSeek() {
 
 // Add event listener for transition end to update time on seeking
 document.getElementById('progressThumb').addEventListener('transitionend', updateTimeOnSeek);
-
-
-
 
 
 
@@ -440,8 +416,6 @@ function updateProgressThumb() {
 
 // Call the function to update the progress thumb position continuously
 setInterval(updateProgressThumb, 100); // Adjust the interval for smoother movement
-
-
 
 
 // Function to move the progress thumb and progress bar together when clicked and dragged
