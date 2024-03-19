@@ -155,7 +155,7 @@ function showAlternativeLink(videoId) {
     // Sprawdź, czy tytuł jest już dostępny
     if (loadingDiv.style.display !== 'none') {
         // Jeśli nie, wyświetl link alternatywny
-        alternativeLinkDiv.style.display = 'block';
+        alternativeLinkDiv.style.display = '';
         alternativeLinkDiv.innerHTML = '<p>The audio/video available only on <a href="https://www.youtube.com/watch?v=' + videoId + '" target="_blank"><img id="youtube-logo" src="static/assets/img/YouTubeLogo.png" alt="YouTube Logo"> <br> Click to listen/watch.</a></p>';
 
         // Ukryj resztę odtwarzacza
@@ -180,8 +180,35 @@ function updateHTMLView(videoId) {
     var youtubePlayerSrc = "https://www.youtube.com/embed/" + videoId + "?autoplay=1&loop=1&enablejsapi=1";
     youtubePlayerIFrame.setAttribute('src', youtubePlayerSrc);
 
+    // Przywróć domyślne style elementów title, container i alternative-link
+    var titleElement = document.getElementById('title');
+    var containerElement = document.getElementById('container');
+    var alternativeLinkElement = document.getElementById('alternative-link');
+
+    // Jeśli alternative-link jest widoczny, a title i container są ukryte,
+    // to przywróć widoczność title i container
+    if (alternativeLinkElement.style.display === '' &&
+        titleElement.style.display === 'none' &&
+        containerElement.style.display === 'none') {
+        titleElement.style.display = '';
+        containerElement.style.display = '';
+    } else {
+        // Ukryj komunikat alternatywnego linku
+        alternativeLinkElement.style.display = 'none';
+
+        // Przywrócenie domyślnego stylu dla elementów title i container po 3 sekundach,
+        // ale tylko jeśli zawartość title nie jest pusta
+        setTimeout(function() {
+            if (titleElement.textContent.trim() !== '') {
+                titleElement.style.display = '';
+                containerElement.style.display = '';
+            }
+        }, 3000);
+    }
+
     isPlaying = true;
 }
+
 
 
 buttons.forEach(function(button) {
@@ -198,21 +225,6 @@ buttons.forEach(function(button) {
 
     });
 });
-
-
-document.getElementById('play-track-btn').addEventListener('click', function() {
-    // Jeśli odtwarzacz jest zatrzymany, klikając przycisk "Play track" rozpocznij odtwarzanie
-    if (!isPlaying) {
-        player.playVideo();
-    } else {
-        // Jeśli odtwarzacz jest w trakcie odtwarzania, klikając przycisk "Play track" zatrzymaj odtwarzanie
-        player.pauseVideo();
-    }
-
-    // Po kliknięciu przycisku "Play track" zaktualizuj interfejs użytkownika
-    updateUI();
-});
-
 
 
 /*********************************************************************************************************************************************
@@ -254,7 +266,6 @@ function changeVolume(volume) {
 
   player.setVolume(volume);
 }
-
 
 
 // Function to update volume slider value based on current player volume
@@ -319,6 +330,7 @@ player.addEventListener('onReady', updateVolumeIcon);
 
 
 
+
 function updateVolumeIcon() {
   var volumeButton = document.getElementById('volumeButton');
   if (volumeButton) {
@@ -335,7 +347,6 @@ function updateVolumeIcon() {
 
 
 document.getElementById('volumeSlider').addEventListener('input', updateVolumeIcon);
-
 
 
 
@@ -368,7 +379,6 @@ function moveProgressThumb(event) {
 
 // Add event listener for clicking on the progress container to move the progress thumb
 document.getElementById('progressContainer').addEventListener('click', moveProgressThumb);
-
 
 
 // Function for smooth transition of the progress thumb
@@ -416,6 +426,7 @@ function updateProgressThumb() {
 
 // Call the function to update the progress thumb position continuously
 setInterval(updateProgressThumb, 100); // Adjust the interval for smoother movement
+
 
 
 // Function to move the progress thumb and progress bar together when clicked and dragged
