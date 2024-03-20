@@ -15,13 +15,13 @@ def main_panel():
     return render_template('main-panel.html', album=album, results=results)
 
 
-@main_panel_blueprint.route('/home', methods=['GET', 'POST'])
-def home():
-    return render_template('home.html')
+@main_panel_blueprint.route('/about')
+def about():
+    return render_template('about.html')
 
 
-@main_panel_blueprint.route('/get_search_album_template', methods=['GET', 'POST'])
-def get_search_album_template():
+@main_panel_blueprint.route('/album-generator', methods=['GET', 'POST'])
+def album_generator():
     if request.method == 'POST':  # Jeśli formularz został wysłany
         album, results = search_album()
     else:  # Jeśli jest to pierwsze wyświetlenie strony
