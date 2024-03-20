@@ -27,5 +27,5 @@ def album_generator():
     else:  # Jeśli jest to pierwsze wyświetlenie strony
         album = None
         results = None
-    # Tutaj zwróć szablon search-album.html
-    return render_template('search-album.html', album=album, results=results)
+    # Tutaj zwróć szablon album-generator.html
+    return render_template('album-generator.html', album=album, results=results)
