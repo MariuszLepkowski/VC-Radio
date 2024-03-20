@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function showHomeView() {
     console.log("Kliknięto Home");
-    fetch('/home')
+    fetch('/about')
         .then(response => response.text())
         .then(html => {
             document.getElementById("search-album-section").innerHTML = html;
