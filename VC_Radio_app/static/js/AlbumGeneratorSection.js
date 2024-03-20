@@ -1,5 +1,5 @@
 function showSearchResults() {
-    console.log("Kliknięto Search results");
+    console.log("Kliknięto VC Album Generator");
     fetch('/album-generator')
         .then(response => response.text())
         .then(html => {
