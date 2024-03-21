@@ -1,4 +1,9 @@
 <div class="main-content">
+{% if album is none and results is none %}
+    <h3>Click to generate album</h3>
+    <button class="btn btn-primary btn-lg" onclick="generateAlbum()">Generate album</button>
+
+{% else %}
 <div id="header">
     <h1>Randomly picked album with Vinnie:</h1>
     <h2>{{ album.artist }} - "{{ album.album_title }}"  ({{ album.year }})</h2>
@@ -159,7 +164,8 @@
         </div>
         <br><br><br><br>
     {% endif %}
-
+</div>
+{% endif %}
 </div>
 
-</div>
+
