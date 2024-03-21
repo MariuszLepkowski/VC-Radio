@@ -5,14 +5,9 @@ from VC_Radio_app.utils.search_album_utils import search_album
 main_panel_blueprint = Blueprint('main_panel', __name__)
 
 
-@main_panel_blueprint.route('/', methods=['GET', 'POST'])
+@main_panel_blueprint.route('/')
 def main_panel():
-    if request.method == 'POST':  # Jeśli formularz został wysłany
-        album, results = search_album()
-    else:  # Jeśli jest to pierwsze wyświetlenie strony
-        album = None
-        results = None
-    return render_template('main-panel.html', album=album, results=results)
+    return render_template('main-panel.html')
 
 
 @main_panel_blueprint.route('/about')
@@ -22,10 +17,9 @@ def about():
 
 @main_panel_blueprint.route('/album-generator', methods=['GET', 'POST'])
 def album_generator():
-    if request.method == 'POST':  # Jeśli formularz został wysłany
+    if request.method == 'POST':
         album, results = search_album()
-    else:  # Jeśli jest to pierwsze wyświetlenie strony
+    else:
         album = None
         results = None
-    # Tutaj zwróć szablon album-generator.html
     return render_template('album-generator.html', album=album, results=results)
