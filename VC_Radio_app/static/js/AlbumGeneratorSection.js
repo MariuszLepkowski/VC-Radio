@@ -8,9 +8,3 @@ function showSearchResults() {
         })
         .catch(error => console.error('Error:', error));
 }
-
-
-
-
-
-

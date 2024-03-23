@@ -169,7 +169,7 @@ function showAlternativeLink(videoId) {
  * PLAY TRACK BUTTONS MANAGEMENT *
  *********************************************************************************************************************************************/
 var buttons = document.querySelectorAll('.play-button');
-
+console.log(buttons);
 
 // Definicja funkcji, która aktualizuje widok HTML na podstawie zmiany wartości atrybutu 'data-video'
 function updateHTMLView(videoId) {
@@ -211,9 +211,9 @@ function updateHTMLView(videoId) {
 
 
 
-buttons.forEach(function(button) {
-    button.addEventListener('click', function() {
-        // Pobierz wartość atrybutu 'data-video-id' dla klikniętego przycisku
+document.addEventListener('click', function(event) {
+    if (event.target.classList.contains('play-button')) {
+        var button = event.target;
         var videoId = button.getAttribute('data-video-id');
 
         // Wywołaj funkcję aktualizującą widok HTML
@@ -222,9 +222,10 @@ buttons.forEach(function(button) {
 
         // Teraz możesz wykorzystać 'videoId' do dalszej pracy, np. przekazując go do odtwarzacza wideo
         console.log('Kliknięto przycisk z identyfikatorem wideo:', videoId);
-
-    });
+    }
 });
+
+
 
 
 /*********************************************************************************************************************************************
