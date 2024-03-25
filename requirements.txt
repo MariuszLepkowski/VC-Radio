@@ -5,6 +5,7 @@ WTForms==3.0.1
 Flask-WTF==1.2.1
 Bootstrap_Flask==2.2.0
 Werkzeug==2.2.2
-python-dotenv
-ytmusicapi
+python-dotenv~=1.0.1
+ytmusicapi~=1.5.2
 google-api-python-client
+Flask-SQLAlchemy==3.1.1

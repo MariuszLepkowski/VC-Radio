@@ -1,11 +1,12 @@
 <div class="main-content">
-{% if album is none and results is none %}
+ {% if album is none %}
     <h3>Click to generate album</h3>
     <button class="btn btn-primary btn-lg" onclick="generateAlbum()">Generate album</button>
 
 {% else %}
         <h3>Click to generate album</h3>
     <button class="btn btn-primary btn-lg" onclick="generateAlbum()">Generate album</button>
+    <br><br>
 <div id="header">
     <h1>Randomly picked album with Vinnie:</h1>
     <h2>{{ album.artist }} - "{{ album.album_title }}"  ({{ album.year }})</h2>
