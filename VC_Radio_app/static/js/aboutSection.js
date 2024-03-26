@@ -10,12 +10,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 function showHomeView() {
-    console.log("Kliknięto Home");
+    console.log("Kliknięto About");
     fetch('/about')
         .then(response => response.text())
         .then(html => {
-            document.getElementById("search-album-section").innerHTML = html;
-            document.getElementById("search-album-section").style.display = "block";
+        // Ukryj sekcję VC Album Generator
+            document.getElementById("search-album-section").style.display = "none";
+            document.getElementById("about-section").innerHTML = html;
+            document.getElementById("about-section").style.display = "block";
         })
         .catch(error => console.error('Error:', error));
 }
