@@ -225,7 +225,24 @@ document.addEventListener('click', function(event) {
     }
 });
 
+document.querySelector('.footer').style.display = 'none';
 
+document.addEventListener('click', function(event) {
+    if (event.target.classList.contains('play-button')) {
+        var button = event.target;
+        var videoId = button.getAttribute('data-video-id');
+
+        // Wywołaj funkcję aktualizującą widok HTML
+        updateHTMLView(videoId);
+        console.log('Zaktualizowano data-video na:', videoId);
+
+        // Pokaż element .footer po kliknięciu przycisku odtwarzania
+        document.querySelector('.footer').style.display = 'block';
+
+        // Teraz możesz wykorzystać 'videoId' do dalszej pracy, np. przekazując go do odtwarzacza wideo
+        console.log('Kliknięto przycisk z identyfikatorem wideo:', videoId);
+    }
+});
 
 
 /*********************************************************************************************************************************************

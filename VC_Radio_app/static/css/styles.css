@@ -1,3 +1,7 @@
+body {
+    background-color: #181a1b
+}
+
 /* Alternative Link */
 #alternative-link a {
     display: flex;
@@ -27,29 +31,6 @@
 }
 
 
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 999;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.8);
-}
-
-
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 600px;
-}
-
-
 .close {
     color: #aaa;
     float: right;
@@ -71,20 +52,24 @@
   left: 0;
   height: 100%;
   width: 250px;
-  background-color: #f8f9fa;
+  color: #fffacd;
   padding: 20px;
+  background-color: black;
 }
+
 .main-content {
   margin-left: 270px;
   padding: 20px;
-  padding-bottom: 120px;
+  background-color: #333;
+  color: #fff;
 }
+
 
 .footer {
   position: fixed;
   bottom: 0;
   width: 100%;
-  background-color: #343a40;
+  background-color: #2E4F4F;
   color: #ffffff;
   text-align: center;
   padding: 10px 0;
@@ -92,21 +77,18 @@
 
 
 /**************************** Styles for all sections ***********************************/
-.about-section {
-  background-color: #e9ecef; /* "Home" */
-}
-.random-album-section {
-  background-color: #ced4da; /* "Pick random album" */
-}
-.search-results-section {
-  background-color: #adb5bd; /* "Search results" */
-}
-.playlist-section {
-  background-color: #868e96; /* "Your Playlist" */
-}
+
 .logo {
-  width: 100px;
-  margin-bottom: 20px;
+  width: 200px;
+  margin-bottom: 30px;
+}
+
+.logo-txt1 {
+  width: 190px;
+}
+
+.logo-txt2 {
+  width: 150px;
 }
 
 .btn-success {
@@ -119,16 +101,26 @@
 
 .pick-album-btn {
     cursor: pointer;
-
 }
 
 .search-results-btn {
     cursor: pointer;
+    color: white;
 }
 
 .home-btn {
     cursor: pointer;
+    color: white;
+}
 
+.your-playlist-btn {
+    color: white;
+}
+
+.search-results-btn:hover,
+.home-btn:hover,
+.your-playlist-btn:hover {
+    color: #d5f4e6;
 }
 
 /********************************** Audio Player ****************************************/
@@ -138,13 +130,15 @@
     margin-top: 20px;
 }
 
-/* Title */
 #title {
-    font-size: 21px;
+    font-size: 24px;
     font-weight: bold;
     margin: 8px auto;
     text-align: center;
+    color: #fff; /* Biały */
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7); /* Wzmocniony efekt cienia */
 }
+
 
 /* Player Controls */
 #player-controls {
@@ -157,8 +151,8 @@
 /* YouTube Icon */
 #youtube-icon {
     cursor: pointer;
-    width: 37px;
-    height: 37px;
+    width: 50px;
+    height: 50px;
     background-image: url('/play.png');
     background-size: cover;
     margin-right: 14px;
@@ -167,18 +161,21 @@
 /* Progress Bar Container */
 #progressContainer {
     width: 50%;
-    height: 6px;
-    background-color: #F5F5DC;
+    height: 8px;
+    background-color: rgb(42, 45, 47);/* jasny odcień szarego */
     position: relative;
     cursor: pointer;
+    border-radius: 4px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3); /* Dodanie cienia */
 }
 
 /* Progress Bar */
 #progressBar {
     height: 100%;
-    background-color: #4caf50;
+    background-color: #4CAF50;
     width: 0;
     transition: width 0.1s linear;
+    border-radius: 4px;
 }
 
 /* Thumb */
@@ -186,11 +183,11 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 19px;
-    height: 19px;
-    background-color: #FF8C00;
+    width: 20px;
+    height: 20px;
+    background-color: #283593;
     border-radius: 50%;
-    border: 2px solid #0000CD;
+    border: 2px solid #fff;
     pointer-events: none;
 }
 
@@ -198,35 +195,39 @@
 #timeInfo {
     margin: 5px 0;
     font-size: 16px;
-    margin-right: 70px;
-    margin-left: 17px;
+    margin-right: 20px;
+    margin-left: 10px;
 }
 
+/* Volume Slider */
 .volume-slider {
     transform: translateY(-50%);
     float: right;
 }
 
+/* Volume Icon */
 #volume-icon {
     width: 25px;
     height: auto;
-    margin-left: 50px;
-    margin-right: 20px;
+    margin-left: 20px;
+    margin-right: 10px;
     cursor: pointer;
     float: right;
 }
 
+/* Volume Button */
 #volumeButton {
     width: 25px;
     height: 25px;
-    margin-left: 50px;
-    margin-right: 3px;
+    margin-left: 20px;
+    margin-right: 5px;
     background-image: url('/static/assets/img/volume-up.svg');
     background-size: cover;
     cursor: pointer;
     filter: invert(1);
 }
 
+/* Volume Button (Muted) */
 #volumeButton.muted {
     background-image: url('/static/assets/img/volume-mute.svg');
 }
