@@ -1,5 +1,5 @@
 body {
-    background-color: #181a1b
+    background-color: #181a1b;
 }
 
 /* Alternative Link */
@@ -50,37 +50,78 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  height: 100%;
-  width: 250px;
+  width: 100%;
   color: #fffacd;
   padding: 20px;
   background-color: black;
+  display: flex;
+  justify-content: space-between; /* Rozłożenie elementów na przeciwnych krańcach kontenera */
 }
+
+#welcome-section h1 {
+  text-align: center; /* Wyśrodkowanie tekstu w poziomie */
+}
+
+.nav {
+  list-style-type: none;
+  padding: 0;
+  display: flex; /* Ustawienie elementów listy w układzie flex */
+  justify-content: space-between; /* Rozłożenie elementów na przeciwnych krańcach kontenera */
+}
+
+.nav li {
+  margin-left: 10px; /* Odstęp między przyciskami */
+}
+
 
 .main-content {
-  margin-left: 270px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 70px;
+  margin-right: 40px;
+  margin-left: 40px;
+  margin-bottom: 20px;
   padding: 20px;
-  background-color: #333;
-  color: #fff;
+  background-color: #343a40;
+  color: #EBDBDA;
 }
 
+.main-content h3{
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 9px;
+    margin-bottom: 30px;
+}
+
+.content-wrapper {
+  display: flex;
+}
+
+.what-is-vcradio-container,
+.vcradio-features-container {
+  flex: 1;
+}
 
 .footer {
   position: fixed;
   bottom: 0;
   width: 100%;
-  background-color: #2E4F4F;
+  background-color: rgb(37, 63, 63);
   color: #ffffff;
   text-align: center;
-  padding: 10px 0;
 }
 
-
+.top-line {
+  height: 25px;
+  background-color: #181a1b;
+}
 /**************************** Styles for all sections ***********************************/
 
 .logo {
+  position: fixed;
   width: 200px;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 .logo-txt1 {
@@ -105,12 +146,12 @@ body {
 
 .search-results-btn {
     cursor: pointer;
-    color: white;
+    color: orange;
 }
 
 .home-btn {
     cursor: pointer;
-    color: white;
+    color: orange;
 }
 
 .your-playlist-btn {
@@ -120,22 +161,52 @@ body {
 .search-results-btn:hover,
 .home-btn:hover,
 .your-playlist-btn:hover {
-    color: #d5f4e6;
+    color: darkorange;
+}
+
+.what-is-vcradio-container {
+    display: flex; /* Użyj flexbox do umieszczenia sekcji obok obrazu */
+    text-align: justify;
+    align-items: center; /* Wyrównaj sekcje i obraz wzdłuż osi pionowej */
+}
+
+.what-is-vcradio-container section {
+    text-align: justify; /* Wyjustowanie tekstu */
+
+}
+
+.vinnie-image-1 {
+    max-width: 420px; /* Ustaw maksymalną szerokość obrazu */
+    margin-left: 130px; /* Dodaj lewy margines, aby zachować odstęp od tekstu */
+
+}
+
+.vcradio-features-container {
+    display: flex; /* Użyj flexbox do umieszczenia sekcji obok obrazu */
+    text-align: justify;
+    align-items: center; /* Wyrównaj sekcje i obraz wzdłuż osi pionowej */
+}
+
+.vinnie-image-2 {
+    max-width: 380px;
+
 }
 
 /********************************** Audio Player ****************************************/
 /* Container */
 #container {
+
     text-align: center;
-    margin-top: 20px;
+
 }
 
 #title {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
-    margin: 8px auto;
     text-align: center;
-    color: #fff; /* Biały */
+    margin-top: 9px;
+    margin-bottom: 5px;
+    color: #fff;
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7); /* Wzmocniony efekt cienia */
 }
 
@@ -151,16 +222,16 @@ body {
 /* YouTube Icon */
 #youtube-icon {
     cursor: pointer;
-    width: 50px;
-    height: 50px;
+    width: 33px;
+    height: 33px;
     background-image: url('/play.png');
     background-size: cover;
-    margin-right: 14px;
+    margin-right: 19px;
 }
 
 /* Progress Bar Container */
 #progressContainer {
-    width: 50%;
+    width: 62%;
     height: 8px;
     background-color: rgb(42, 45, 47);/* jasny odcień szarego */
     position: relative;
@@ -194,7 +265,7 @@ body {
 /* Time Info */
 #timeInfo {
     margin: 5px 0;
-    font-size: 16px;
+    font-size: 13px;
     margin-right: 20px;
     margin-left: 10px;
 }
