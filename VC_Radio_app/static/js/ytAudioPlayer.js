@@ -225,7 +225,7 @@ document.addEventListener('click', function(event) {
     }
 });
 
-document.querySelector('.footer').style.display = 'none';
+document.querySelector('.player').style.display = 'none';
 
 document.addEventListener('click', function(event) {
     if (event.target.classList.contains('play-button')) {
@@ -236,8 +236,8 @@ document.addEventListener('click', function(event) {
         updateHTMLView(videoId);
         console.log('Zaktualizowano data-video na:', videoId);
 
-        // Pokaż element .footer po kliknięciu przycisku odtwarzania
-        document.querySelector('.footer').style.display = 'block';
+        // Pokaż element .player po kliknięciu przycisku odtwarzania
+        document.querySelector('.player').style.display = 'block';
 
         // Teraz możesz wykorzystać 'videoId' do dalszej pracy, np. przekazując go do odtwarzacza wideo
         console.log('Kliknięto przycisk z identyfikatorem wideo:', videoId);

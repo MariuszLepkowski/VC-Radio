@@ -107,9 +107,11 @@ body {
   position: fixed;
   bottom: 0;
   width: 100%;
-  background-color: rgb(37, 63, 63);
+  background-color:#181a1b;
   color: #ffffff;
   text-align: center;
+  padding-top: 10px;
+  font-size: 12px; /* Ustaw wielkość tekstu na 14 pikseli */
 }
 
 .top-line {
@@ -130,6 +132,11 @@ body {
 
 .logo-txt2 {
   width: 150px;
+}
+
+.logo-footer {
+    width: 80px;
+    padding-bottom: 3px;
 }
 
 .btn-success {
@@ -154,9 +161,10 @@ body {
     color: orange;
 }
 
-.your-playlist-btn {
-    color: white;
+.btn-primary {
+    margin-bottom: 40px;
 }
+
 
 .search-results-btn:hover,
 .home-btn:hover,
@@ -193,11 +201,18 @@ body {
 }
 
 /********************************** Audio Player ****************************************/
+.player {
+  position: fixed;
+  bottom: 32px;
+  width: 100%;
+  background-color: rgb(37, 63, 63);
+  color: #ffffff;
+  text-align: center;
+}
+
 /* Container */
 #container {
-
     text-align: center;
-
 }
 
 #title {
