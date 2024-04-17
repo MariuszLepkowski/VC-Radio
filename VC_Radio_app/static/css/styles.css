@@ -139,6 +139,30 @@ body {
     padding-bottom: 3px;
 }
 
+.vinnie-colaiuta-site-logo {
+    width: 190px;
+}
+
+.instagram-logo {
+    width: 75px;
+}
+
+.fb-logo {
+    width: 130px;
+}
+
+.drummerworld-logo {
+    width: 230px;
+}
+
+.breakfast-logo {
+    width: 200px;
+}
+
+.github-logo {
+    width: 140px;
+}
+
 .btn-success {
     margin-left: 15px;
 }
@@ -151,25 +175,26 @@ body {
     cursor: pointer;
 }
 
-.search-results-btn {
+.github-btn {
+    width: 65px;
+}
+
+.home-btn,
+.search-results-btn,
+.links-btn {
     cursor: pointer;
     color: orange;
 }
 
-.home-btn {
-    cursor: pointer;
-    color: orange;
+.search-results-btn:hover,
+.home-btn:hover,
+.your-playlist-btn:hover,
+.links-btn:hover {
+    color: darkorange;
 }
 
 .btn-primary {
     margin-bottom: 40px;
-}
-
-
-.search-results-btn:hover,
-.home-btn:hover,
-.your-playlist-btn:hover {
-    color: darkorange;
 }
 
 .what-is-vcradio-container {
@@ -181,6 +206,10 @@ body {
 .what-is-vcradio-container section {
     text-align: justify; /* Wyjustowanie tekstu */
 
+}
+
+.links-section {
+    margin-top:14px;
 }
 
 .vinnie-image-1 {
