@@ -58,9 +58,6 @@ body {
   justify-content: space-between; /* Rozłożenie elementów na przeciwnych krańcach kontenera */
 }
 
-#welcome-section h1 {
-  text-align: center; /* Wyśrodkowanie tekstu w poziomie */
-}
 
 .nav {
   list-style-type: none;
@@ -81,7 +78,7 @@ body {
   margin-right: 40px;
   margin-left: 40px;
   margin-bottom: 20px;
-  padding: 20px;
+  padding: 30px;
   background-color: #343a40;
   color: #EBDBDA;
 }
@@ -213,8 +210,21 @@ body {
 
 }
 
-.links-section {
+#links-section {
     margin-top:14px;
+    margin-bottom:30px;
+}
+
+#welcome-section {
+      display: flex;
+      flex-direction: column;
+      margin-top: 70px;
+      margin-right: 40px;
+      margin-left: 40px;
+      margin-bottom: 20px;
+      padding: 30px;
+      background-color: #343a40;
+      color: #EBDBDA;
 }
 
 .vinnie-image-1 {

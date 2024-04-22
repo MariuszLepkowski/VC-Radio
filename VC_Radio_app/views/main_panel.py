@@ -25,6 +25,12 @@ def album_generator():
     album, results = process_album_request()
     return render_template('album-generator.html', album=album, results=results)
 
+
 @main_panel_blueprint.route('/about')
 def about():
     return render_template('about.html')
+
+
+@main_panel_blueprint.route('/links')
+def links():
+    return render_template('links.html')

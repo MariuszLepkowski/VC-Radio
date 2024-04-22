@@ -16,6 +16,7 @@ function showHomeView() {
         .then(html => {
         // Ukryj sekcję VC Album Generator
             document.getElementById("search-album-section").style.display = "none";
+            document.getElementById("links-section").style.display = "none";
             document.getElementById("about-section").innerHTML = html;
             document.getElementById("about-section").style.display = "block";
         })

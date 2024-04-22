@@ -25,6 +25,7 @@ function showSearchResults() {
 
     // Ukryj sekcję "About", jeśli istnieje
     document.getElementById("about-section").style.display = "none";
+    document.getElementById("links-section").style.display = "none";
 
     fetch('/album-generator')
         .then(response => response.text())
