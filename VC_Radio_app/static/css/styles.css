@@ -55,7 +55,7 @@ body {
   padding: 20px;
   background-color: black;
   display: flex;
-  justify-content: space-between; /* Rozłożenie elementów na przeciwnych krańcach kontenera */
+  justify-content: space-between;
   border-bottom: 2px solid gray;
 }
 
@@ -63,12 +63,12 @@ body {
 .nav {
   list-style-type: none;
   padding: 0;
-  display: flex; /* Ustawienie elementów listy w układzie flex */
-  justify-content: space-between; /* Rozłożenie elementów na przeciwnych krańcach kontenera */
+  display: flex;
+  justify-content: space-between;
 }
 
 .nav li {
-  margin-left: 10px; /* Odstęp między przyciskami */
+  margin-left: 10px;
 }
 
 
@@ -114,7 +114,7 @@ body {
   color: #ffffff;
   text-align: center;
   padding-top: 10px;
-  font-size: 12px; /* Ustaw wielkość tekstu na 14 pikseli */
+  font-size: 12px;
   border-top: 2px solid gray;
 }
 
@@ -208,13 +208,13 @@ body {
 }
 
 .what-is-vcradio-container {
-    display: flex; /* Użyj flexbox do umieszczenia sekcji obok obrazu */
+    display: flex;
     text-align: justify;
-    align-items: center; /* Wyrównaj sekcje i obraz wzdłuż osi pionowej */
+    align-items: center;
 }
 
 .what-is-vcradio-container section {
-    text-align: justify; /* Wyjustowanie tekstu */
+    text-align: justify;
 
 }
 
@@ -224,7 +224,7 @@ body {
     margin-top: 120px;
     margin-right: 40px;
     margin-left: 120px;
-    margin-bottom: 57px;
+    margin-bottom: 180px;
     padding: 30px;
     background-color: #343a40;
     color: #EBDBDA;
@@ -248,15 +248,15 @@ body {
 
 
 .vinnie-image-1 {
-    max-width: 420px; /* Ustaw maksymalną szerokość obrazu */
-    margin-left: 130px; /* Dodaj lewy margines, aby zachować odstęp od tekstu */
+    max-width: 420px;
+    margin-left: 130px;
 
 }
 
 .vcradio-features-container {
-    display: flex; /* Użyj flexbox do umieszczenia sekcji obok obrazu */
+    display: flex;
     text-align: justify;
-    align-items: center; /* Wyrównaj sekcje i obraz wzdłuż osi pionowej */
+    align-items: center;
 }
 
 .vinnie-image-2 {
