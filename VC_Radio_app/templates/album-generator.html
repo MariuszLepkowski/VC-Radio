@@ -1,14 +1,68 @@
 <div class="main-content">
+
  {% if album is none %}
-    <h3>Click to generate album</h3>
+
+    <h3>Click to generate album with Vinnie Colaiuta on drums</h3>
+
     <button class="btn btn-primary btn-lg" onclick="generateAlbum()">Generate album</button>
 
+    <div class="text-center" id="loading-spinner">
+
+        <div class="spinner-grow text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-secondary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-success" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-danger" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-warning" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-info" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+
+
+    </div>
+
+
+
 {% else %}
-        <h3>Click to generate album</h3>
+
+    <h3>Click to generate album with Vinnie Colaiuta on drums</h3>
+
     <button class="btn btn-primary btn-lg" onclick="generateAlbum()">Generate album</button>
-    <br><br>
+
+    <div class="text-center" id="loading-spinner">
+        <div class="spinner-grow text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-secondary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-success" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-danger" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-warning" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-info" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+<br><br><br><br><br><br>
+
 <div id="header">
-    <h1>Randomly picked album with Vinnie:</h1>
+    <h1>Randomly generated album:</h1>
     <h2>{{ album.artist }} - "{{ album.album_title }}"  ({{ album.year }})</h2>
 </div>
 

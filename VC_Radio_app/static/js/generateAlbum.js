@@ -1,9 +1,15 @@
 let searchResultsGenerated = false;
 let clicksOnAboutBtnAfterSearchResultsGenerated = 0;
 
+
+
 function generateAlbum() {
     console.log("kliknięto przycisk GENERATE ALBUM");
+
+    document.getElementById("loading-spinner").style.display = 'block'
+
     clicksOnAboutBtnAfterSearchResultsGenerated += 1;
+
     fetch('/album-generator', {
         method: 'POST',
         headers: {
@@ -16,6 +22,7 @@ function generateAlbum() {
         document.getElementById('search-album-section').innerHTML = data;
         // Ustaw flagę na true, aby oznaczyć, że wyniki zostały wygenerowane
         searchResultsGenerated = true;
+
         console.log("searchResultsGenerated = " + searchResultsGenerated);
     })
     .catch(error => {
