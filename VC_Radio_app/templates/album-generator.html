@@ -2,8 +2,7 @@
 
  {% if album is none %}
 
-    <h3>Click to generate album with Vinnie Colaiuta on drums</h3>
-
+    <h3>Click to generate random album <br> with Vinnie Colaiuta on drums</h3>
     <button class="btn btn-primary btn-lg" onclick="generateAlbum()">Generate album</button>
 
     <div class="text-center" id="loading-spinner">
@@ -27,18 +26,15 @@
           <span class="visually-hidden">Loading...</span>
         </div>
 
-
     </div>
-
-
 
 {% else %}
 
-    <h3>Click to generate album with Vinnie Colaiuta on drums</h3>
-
+    <h3>Click to generate random album <br> with Vinnie Colaiuta on drums</h3>
     <button class="btn btn-primary btn-lg" onclick="generateAlbum()">Generate album</button>
 
     <div class="text-center" id="loading-spinner">
+
         <div class="spinner-grow text-primary" role="status">
           <span class="visually-hidden">Loading...</span>
         </div>
@@ -57,56 +53,59 @@
         <div class="spinner-grow text-info" role="status">
           <span class="visually-hidden">Loading...</span>
         </div>
+
     </div>
 
-<br><br><br><br><br><br>
+    <br><br><br><br><br><br>
 
-<div id="header">
-    <h1>Randomly generated album:</h1>
-    <h2>{{ album.artist }} - "{{ album.album_title }}"  ({{ album.year }})</h2>
-</div>
+    <div id="header">
+        <h1>Randomly generated album:</h1>
+        <h2>{{ album.artist }} - "{{ album.album_title }}"  ({{ album.year }})</h2>
+    </div>
 
-<br>
+    <br>
 
-<button class="btn btn-primary btn-lg" onclick="toggleSearchResults(this)">Show search results</button>
-    <br><br><br><br>
+    <button class="btn btn-primary btn-lg" onclick="toggleSearchResults(this)">Show search results</button>
+        <br><br><br><br>
 
 
-<div id="search-results" class="hidden">
+    <div id="search-results" class="hidden">
 
-    {% if results and results.yt_music_album and results.yt_music_album[1] %}
-        <h2>Albums found on yt music:</h2>
-        {% for album in results.yt_music_album[1] %}
-            <p> {{ album.ytMusicAlbumArtist }} - "{{ album.ytMusicAlbumTitle }}" </p> <button class="btn btn-secondary" onclick="toggleTracklist(this)">Show tracklist</button>
+        {% if results and results.yt_music_album and results.yt_music_album[1] %}
 
-            <div class="tracklist hidden">
-                {% for track in album.AlbumTracklist %}
-                    <p>{{ track.trackNumber }}. {{ track.trackTitle }}
+            <h2>Albums found on yt music:</h2>
+            {% for album in results.yt_music_album[1] %}
+                <p> {{ album.ytMusicAlbumArtist }} - "{{ album.ytMusicAlbumTitle }}" </p> <button class="btn btn-secondary" onclick="toggleTracklist(this)">Show tracklist</button>
 
-                        <button type="button" class="btn btn-success play-button" data-video-id="{{ track.video_id }}">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play" viewBox="0 0 16 16" style="--darkreader-inline-fill: currentColor;" data-darkreader-inline-fill="">
-                                <path d="M10.804 8 5 4.633v6.734zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696z"></path>
-                            </svg>
-                            Play track
-                        </button>
+                <div class="tracklist hidden">
+                    {% for track in album.AlbumTracklist %}
+                        <p>{{ track.trackNumber }}. {{ track.trackTitle }}
 
-                        <a href="{{ track.trackURL }}" class="btn btn-outline-danger">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16">
-                              <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z"/>
-                            </svg>
-                            YouTube
-                        </a>
+                            <button type="button" class="btn btn-success play-button" data-video-id="{{ track.video_id }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play" viewBox="0 0 16 16" style="--darkreader-inline-fill: currentColor;" data-darkreader-inline-fill="">
+                                    <path d="M10.804 8 5 4.633v6.734zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696z"></path>
+                                </svg>
+                                Play track
+                            </button>
 
-                    </p>
+                            <a href="{{ track.trackURL }}" class="btn btn-outline-danger">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16">
+                                  <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z"/>
+                                </svg>
+                                YouTube
+                            </a>
+                        </p>
+                    {% endfor %}
 
-                {% endfor %}
-            </div>
-    <br><br><br><br>
-        {% endfor %}
-    <br><br>
-    {% endif %}
+                </div>
+
+            <br><br><br><br>
+            {% endfor %}
+        <br><br>
+        {% endif %}
 
     {% if results and results.yt_music_playlist and results.yt_music_playlist[1] %}
+
         <h2>Playlists found on yt music:</h2>
         {% for playlist in results.yt_music_playlist[1] %}
             <p>{{ playlist.ytMusicPlaylistTitle }}
@@ -117,10 +116,10 @@
                 </svg>
                 See playlist on YouTube
             </a>
+
             </p>
 
             <button class="btn btn-secondary" onclick="toggleTracklist(this)">Show tracklist</button>
-
 
             <div class="tracklist hidden">
                 {% for track in playlist.PlaylistTracklist %}
@@ -144,12 +143,13 @@
 
                 {% endfor %}
             </div>
-    <br><br><br><br>
+        <br><br><br><br>
         {% endfor %}
     <br><br>
     {% endif %}
 
     {% if results and results.yt_playlist and results.yt_playlist[1] %}
+
         <h2>Playlists found on yt:</h2>
         {% for playlist in results.yt_playlist[1] %}
             <p> {{ playlist.YouTubePlaylistTitle }}
@@ -161,7 +161,7 @@
                 See playlist on YouTube
             </a>
 
-            </p> <button class="btn btn-secondary" onclick="toggleTracklist(this)">Show tracklist</button>
+            </p><button class="btn btn-secondary" onclick="toggleTracklist(this)">Show tracklist</button>
 
 
             <div class="tracklist hidden">
@@ -192,8 +192,8 @@
     {% endif %}
 
     {% if results and results.yt_video and results.yt_video[1] %}
-        <h2>Videos found on yt:</h2>
 
+        <h2>Videos found on yt:</h2>
         <button class="btn btn-secondary" onclick="toggleTracklist(this)">Show tracklist</button>
 
         <div class="tracklist hidden">
@@ -216,15 +216,13 @@
                     </a>
 
                 </p>
-
             {% endfor %}
+
         </div>
         <br><br><br><br>
     {% endif %}
 </div>
 {% endif %}
 </div>
-
-
 
 {% include "scripts.html" %}
