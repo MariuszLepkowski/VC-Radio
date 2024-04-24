@@ -14,7 +14,6 @@ function showHomeView() {
     fetch('/about')
         .then(response => response.text())
         .then(html => {
-        // Ukryj sekcję VC Album Generator
             document.getElementById("search-album-section").style.display = "none";
             document.getElementById("links-section").style.display = "none";
             document.getElementById("about-section").innerHTML = html;

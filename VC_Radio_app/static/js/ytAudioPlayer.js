@@ -152,13 +152,10 @@ function showAlternativeLink(videoId) {
     var playerContainer = document.getElementById('container');
     var loadingDiv = document.getElementById('title');
 
-    // Sprawdź, czy tytuł jest już dostępny
     if (loadingDiv.style.display !== 'none') {
-        // Jeśli nie, wyświetl link alternatywny
         alternativeLinkDiv.style.display = '';
         alternativeLinkDiv.innerHTML = '<p>The audio/video available only on <a href="https://www.youtube.com/watch?v=' + videoId + '" target="_blank"><img id="youtube-logo" src="static/assets/img/YouTubeLogo.png" alt="YouTube Logo"> <br> Click to listen/watch.</a></p>';
 
-        // Ukryj resztę odtwarzacza
         playerContainer.style.display = 'none';
         loadingDiv.style.display = 'none';
     }
@@ -171,7 +168,6 @@ function showAlternativeLink(videoId) {
 var buttons = document.querySelectorAll('.play-button');
 console.log(buttons);
 
-// Definicja funkcji, która aktualizuje widok HTML na podstawie zmiany wartości atrybutu 'data-video'
 function updateHTMLView(videoId) {
     var youtubePlayerDiv = document.getElementById('youtube-audio');
     youtubePlayerDiv.setAttribute('data-video', videoId);
@@ -179,25 +175,18 @@ function updateHTMLView(videoId) {
     var youtubePlayerIFrame = document.getElementById('youtube-player');
     var youtubePlayerSrc = "https://www.youtube.com/embed/" + videoId + "?autoplay=1&loop=1&enablejsapi=1";
     youtubePlayerIFrame.setAttribute('src', youtubePlayerSrc);
-
-    // Przywróć domyślne style elementów title, container i alternative-link
     var titleElement = document.getElementById('title');
     var containerElement = document.getElementById('container');
     var alternativeLinkElement = document.getElementById('alternative-link');
 
-    // Jeśli alternative-link jest widoczny, a title i container są ukryte,
-    // to przywróć widoczność title i container
     if (alternativeLinkElement.style.display === '' &&
         titleElement.style.display === 'none' &&
         containerElement.style.display === 'none') {
         titleElement.style.display = '';
         containerElement.style.display = '';
     } else {
-        // Ukryj komunikat alternatywnego linku
         alternativeLinkElement.style.display = 'none';
 
-        // Przywrócenie domyślnego stylu dla elementów title i container po 3 sekundach,
-        // ale tylko jeśli zawartość title nie jest pusta
         setTimeout(function() {
             if (titleElement.textContent.trim() !== '') {
                 titleElement.style.display = '';
@@ -210,17 +199,13 @@ function updateHTMLView(videoId) {
 }
 
 
-
 document.addEventListener('click', function(event) {
     if (event.target.classList.contains('play-button')) {
         var button = event.target;
         var videoId = button.getAttribute('data-video-id');
 
-        // Wywołaj funkcję aktualizującą widok HTML
         updateHTMLView(videoId);
         console.log('Zaktualizowano data-video na:', videoId);
-
-        // Teraz możesz wykorzystać 'videoId' do dalszej pracy, np. przekazując go do odtwarzacza wideo
         console.log('Kliknięto przycisk z identyfikatorem wideo:', videoId);
     }
 });
@@ -232,14 +217,11 @@ document.addEventListener('click', function(event) {
         var button = event.target;
         var videoId = button.getAttribute('data-video-id');
 
-        // Wywołaj funkcję aktualizującą widok HTML
         updateHTMLView(videoId);
         console.log('Zaktualizowano data-video na:', videoId);
 
-        // Pokaż element .player po kliknięciu przycisku odtwarzania
         document.querySelector('.player').style.display = 'block';
 
-        // Teraz możesz wykorzystać 'videoId' do dalszej pracy, np. przekazując go do odtwarzacza wideo
         console.log('Kliknięto przycisk z identyfikatorem wideo:', videoId);
     }
 });
@@ -264,7 +246,6 @@ function updateVolumeButton() {
 
 // Call the function to update volume button after each volume change
 document.getElementById('volumeSlider').addEventListener('input', updateVolumeButton);
-
 
 
 // Function to change volume
@@ -347,8 +328,6 @@ document.getElementById('volumeSlider').addEventListener('input', updateVolumeIc
 player.addEventListener('onReady', updateVolumeIcon);
 
 
-
-
 function updateVolumeIcon() {
   var volumeButton = document.getElementById('volumeButton');
   if (volumeButton) {
@@ -367,50 +346,36 @@ function updateVolumeIcon() {
 document.getElementById('volumeSlider').addEventListener('input', updateVolumeIcon);
 
 
-
-
 /************************************************************************************************************************************************
  * PROGRESS BAR HANDLING *
  ************************************************************************************************************************************************/
 
 // Function to move the progress thumb when clicked
 function moveProgressThumb(event) {
-    // Get the progress container element
     var progressBar = document.getElementById('progressContainer');
 
-    // Calculate the click position relative to the progress container
     var clickPosition = event.clientX - progressBar.getBoundingClientRect().left;
 
-    // Calculate the percentage of the progress
     var percentage = clickPosition / progressBar.clientWidth;
 
-    // Calculate the seek time based on the percentage
     var seekTime = duration * percentage;
 
-    // Seek to the calculated time in the video player
     player.seekTo(seekTime);
 
-    // Update the position of the progress thumb
     var progressThumb = document.getElementById('progressThumb');
     progressThumb.style.left = percentage * 100 + '%';
 }
 
-// Add event listener for clicking on the progress container to move the progress thumb
 document.getElementById('progressContainer').addEventListener('click', moveProgressThumb);
 
 
 // Function for smooth transition of the progress thumb
 function smoothMoveProgressThumb() {
-    // Get the progress thumb element
     var progressThumb = document.getElementById('progressThumb');
-
-    // Add transition property for smooth movement
     progressThumb.style.transition = 'left 0.1s linear';
 }
 
-// Add event listener for transition end to remove transition property
 document.getElementById('progressThumb').addEventListener('transitionend', function() {
-    // Remove the transition property after transition ends
     this.style.transition = '';
 });
 
@@ -418,80 +383,56 @@ document.getElementById('progressThumb').addEventListener('transitionend', funct
 
 // Function to update the time on seeking
 function updateTimeOnSeek() {
-    // Get the current time of the video player
     currentTime = player.getCurrentTime();
-
-    // Update the UI to reflect the new time
     updateUI();
 }
 
-// Add event listener for transition end to update time on seeking
 document.getElementById('progressThumb').addEventListener('transitionend', updateTimeOnSeek);
 
 
 
 // Function to continuously update the progress thumb position based on the current time
 function updateProgressThumb() {
-    // Calculate the percentage progress of the video
     var progressPercentage = (currentTime / duration) * 100;
 
-    // Get the progress thumb element
     var progressThumb = document.getElementById('progressThumb');
-
-    // Set the left position of the progress thumb to match the progress percentage
     progressThumb.style.left = progressPercentage + '%';
 }
 
-// Call the function to update the progress thumb position continuously
-setInterval(updateProgressThumb, 100); // Adjust the interval for smoother movement
+setInterval(updateProgressThumb, 100);
 
 
 
 // Function to move the progress thumb and progress bar together when clicked and dragged
 function moveProgressThumbAndBar(event) {
-    // Prevent default behavior to avoid text selection
     event.preventDefault();
 
-    // Get the progress container element
     var progressBar = document.getElementById('progressContainer');
-
-    // Calculate the click position relative to the progress container
     var clickPosition = event.clientX - progressBar.getBoundingClientRect().left;
-
-    // Calculate the percentage of the progress
     var percentage = clickPosition / progressBar.clientWidth;
 
-    // Limit the percentage to be within 0 and 1
     percentage = Math.max(0, Math.min(1, percentage));
 
-    // Calculate the seek time based on the percentage
     var seekTime = duration * percentage;
 
-    // Seek to the calculated time in the video player
     player.seekTo(seekTime);
 
-    // Update the position of the progress thumb and progress bar
     var progressThumb = document.getElementById('progressThumb');
     progressThumb.style.left = percentage * 100 + '%';
+
     var progressBar = document.getElementById('progressBar');
     progressBar.style.width = percentage * 100 + '%';
 }
 
-// Add event listener for mousedown to start dragging the progress thumb and progress bar
 document.getElementById('progressContainer').addEventListener('mousedown', function(event) {
-    // Call the function to move the progress thumb and progress bar together
     moveProgressThumbAndBar(event);
-
-    // Add event listener for mousemove to continue dragging
     document.addEventListener('mousemove', moveProgressThumbAndBar);
 
     // Function to handle mouseup event
     function handleMouseUp() {
-        // Remove event listeners for mousemove and mouseup when dragging stops
         document.removeEventListener('mousemove', moveProgressThumbAndBar);
         document.removeEventListener('mouseup', handleMouseUp);
     }
 
-    // Add event listener for mouseup to stop dragging
     document.addEventListener('mouseup', handleMouseUp);
 });

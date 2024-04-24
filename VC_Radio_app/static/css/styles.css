@@ -247,7 +247,7 @@ body {
 
 .vinnie-image-1 {
     max-width: 420px;
-    margin-left: 130px;
+    margin-left: 5px;
 
 }
 
@@ -255,6 +255,7 @@ body {
     display: flex;
     text-align: justify;
     align-items: center;
+    padding: 20px;
 }
 
 .vinnie-image-2 {
