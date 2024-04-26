@@ -209,7 +209,8 @@ body {
 .what-is-vcradio-container {
     display: flex;
     text-align: justify;
-    align-items: center;
+    align-items: top;
+    margin-top: 20px;
 }
 
 .what-is-vcradio-container section {
@@ -246,7 +247,7 @@ body {
 
 
 .vinnie-image-1 {
-    max-width: 420px;
+    max-width: 460px;
     margin-left: 5px;
 
 }
@@ -259,7 +260,7 @@ body {
 }
 
 .vinnie-image-2 {
-    max-width: 380px;
+    max-width: 460px;
 
 }
 
