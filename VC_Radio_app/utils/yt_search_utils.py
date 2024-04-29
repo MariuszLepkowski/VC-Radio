@@ -1,4 +1,3 @@
-from ytmusicapi import YTMusic
 from googleapiclient.discovery import build
 from dotenv import load_dotenv
 import os
@@ -10,7 +9,7 @@ YT_PLAYLIST_ENDPOINT = 'https://www.youtube.com/playlist?list='
 YT_API_KEY = os.environ['YT_API_KEY']
 
 youtube = build("youtube", "v3", developerKey=YT_API_KEY)
-yt = YTMusic('oauth.json')
+
 
 
 def search_album_track_on_yt(search_query):
