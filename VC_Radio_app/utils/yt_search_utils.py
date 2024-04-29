@@ -20,7 +20,7 @@ def search_album_track_on_yt(search_query):
     album_track_found = False
     print(f'searchquery={search_query}')
 
-    # artist_query, title_query = search_query.split(' ', 1)
+    artist_query, title_query = search_query.split(' ', 1)
 
     request = youtube.search().list(
         part='snippet',
@@ -132,7 +132,7 @@ def search_video_on_yt(search_query):
         part='snippet',
         q=search_query,
         type='video',
-        maxResults=50,
+        maxResults=15,
     )
     response = request.execute()
 
