@@ -14,11 +14,10 @@ youtube = build("youtube", "v3", developerKey=YT_API_KEY)
 
 def search_album_track_on_yt(search_query):
     """Searches for an album on regular YT by filtering channels with 'Topic' phrase"""
-    print('search_video_on_yt')
-
-    album_track_found = False
+    print(f'search_album_track_on_yt(search_query) function has been called')
     print(f'searchquery={search_query}')
 
+    album_track_found = False
     artist_query, title_query = search_query.split(' ', 1)
 
     request = youtube.search().list(
@@ -51,13 +50,14 @@ def search_album_track_on_yt(search_query):
             album_track_found = True
         else:
             pass
-
+    print(f"search_album_track_on_yt response from YouTubeAPI: {response}")
     return album_track_found, yt_video_info
 
 
 def search_playlist_on_yt(search_query):
     """Searches for playlists on regular YT"""
-    print('search_playlist_on_yt')
+    print('search_playlist_on_yt(searchquery) function has been called')
+    print(f'searchquery={search_query}')
 
     yt_playlist_found = False
 
@@ -115,13 +115,14 @@ def search_playlist_on_yt(search_query):
                         'yt_playlist_tracklist': playlist_tracks,
                     }
                 )
-
+    print(f"search_playlist_on_yt response from YouTubeAPI: {response}")
     return yt_playlist_found, yt_playlist_info
 
 
 def search_video_on_yt(search_query):
     """Searches for a video on regular YT"""
-    print('search_video_on_yt')
+    print('search_video_on_yt(search_query) function has been called')
+    print(f'searchquery={search_query}')
 
     video_found = False
 
@@ -151,6 +152,7 @@ def search_video_on_yt(search_query):
 
         video_found = True
 
+    print(f"search_video_on_yt(search_query) response from YouTubeAPI: {response}")
     return video_found, yt_video_info
 
 
