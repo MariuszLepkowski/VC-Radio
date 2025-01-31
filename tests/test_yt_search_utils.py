@@ -1,16 +1,5 @@
-import pytest
-from unittest.mock import patch
-from VC_Radio_app.utils.yt_search_utils import search_album_track_on_yt
-from VC_Radio_app.utils.yt_search_utils import YT_VIDEO_ENDPOINT
-
-
-@pytest.fixture
-def mock_youtube_search(mock_yt_api_response):
-    """Mocks youtube.search().list().execute() to return data from mock_yt_api_response"""
-    with patch("VC_Radio_app.utils.yt_search_utils.youtube.search") as mock_search:
-        mock_request = mock_search.return_value.list.return_value
-        mock_request.execute.return_value = mock_yt_api_response
-        yield mock_search
+from VC_Radio_app.utils.yt_search_utils import search_album_track_on_yt, search_playlist_on_yt
+from VC_Radio_app.utils.yt_search_utils import YT_VIDEO_ENDPOINT, YT_PLAYLIST_ENDPOINT
 
 
 def test_search_album_track_on_yt(mock_youtube_search):
@@ -26,6 +15,22 @@ def test_search_album_track_on_yt(mock_youtube_search):
     assert yt_video_info[0]["video_id"] == "4f3l0VtFhJk"
 
 
+def test_search_playlist_on_yt(mock_youtube_search):
+    """Test verifying correct playlist search behavior on YouTube"""
+    search_query = "michael landau organic instrumentals"
+
+    yt_playlist_found, yt_playlist_info = search_playlist_on_yt(search_query)
+
+    assert yt_playlist_found is True
+    assert len(yt_playlist_info) == 1
+    assert yt_playlist_info[0]["YouTubePlaylistTitle"] == "The Michael Landau Group - Organic Instrumentals [FullAlbum]"
+    assert yt_playlist_info[0]["YouTubePlaylistUrl"] == f"{YT_PLAYLIST_ENDPOINT}PLtlNFtEji3_hWVTi3Sj1ZfSqpf0sMasjy"
+
+    assert len(yt_playlist_info[0]["yt_playlist_tracklist"]) == 2
+    assert yt_playlist_info[0]["yt_playlist_tracklist"][0]["video_title"] == "Delano"
+    assert yt_playlist_info[0]["yt_playlist_tracklist"][0]["video_id"] == "AT5Mzf98kls"
+    assert yt_playlist_info[0]["yt_playlist_tracklist"][1]["video_title"] == "Ghouls And The Goblins"
+    assert yt_playlist_info[0]["yt_playlist_tracklist"][1]["video_id"] == "4DX26tU6WLs"
 
 
 
