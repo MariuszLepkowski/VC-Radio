@@ -1,4 +1,4 @@
-from VC_Radio_app.utils.yt_search_utils import search_album_track_on_yt, search_playlist_on_yt
+from VC_Radio_app.utils.yt_search_utils import search_album_track_on_yt, search_playlist_on_yt, search_video_on_yt
 from VC_Radio_app.utils.yt_search_utils import YT_VIDEO_ENDPOINT, YT_PLAYLIST_ENDPOINT
 
 
@@ -31,6 +31,20 @@ def test_search_playlist_on_yt(mock_youtube_search):
     assert yt_playlist_info[0]["yt_playlist_tracklist"][0]["video_id"] == "AT5Mzf98kls"
     assert yt_playlist_info[0]["yt_playlist_tracklist"][1]["video_title"] == "Ghouls And The Goblins"
     assert yt_playlist_info[0]["yt_playlist_tracklist"][1]["video_id"] == "4DX26tU6WLs"
+
+
+def test_search_video_on_yt(mock_youtube_search):
+    """Tests the correctness of video search on YouTube"""
+    search_query = "michael landau organic instrumentals"
+
+    video_found, yt_video_info = search_video_on_yt(search_query)
+
+    assert video_found is True
+    assert len(yt_video_info) == 1
+    assert yt_video_info[0]["YouTubeVideoTitle"] == "michael landau - the big black bear - organic instrumentals"
+    assert yt_video_info[0]["YouTubeVideoUrl"] == "https://www.youtube.com/watch?v=4f3l0VtFhJk"
+    assert yt_video_info[0]["video_id"] == "4f3l0VtFhJk"
+
 
 
 
