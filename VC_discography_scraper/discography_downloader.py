@@ -42,24 +42,30 @@ class DiscographyDownloader:
         print("Whole discography downloaded and saved.")
 
     def pick_random_album(self):
-        """Picks random album from the discography inside discography.csv"""
         print("Picking random album...")
         if not os.path.exists(self.filename):
             print("Downloading and saving whole discography because file doesn't exist...")
             self.download_and_save_whole_discography()
 
-        data = pd.read_csv(self.filename)
+        data = pd.read_csv(
+            self.filename,
+            dtype=str,
+            low_memory=False
+        )
+
+        data = data.dropna(subset=['artist', 'title'])  # 🔥 Odfiltruj NaNy
+        data = data[data['artist'].str.strip() != '']
+        data = data[data['title'].str.strip() != '']
+
+        if data.empty:
+            raise ValueError("No valid albums found in discography.")
+
         random_album = data.sample()
 
-        artist = random_album['artist'].iloc[0]
-        title = random_album['title'].iloc[0]
-        year = random_album['year'].iloc[0]
-
-        random_album = {
-            "artist": artist,
-            "album_title": title,
-            "year": year,
+        return {
+            "artist": random_album['artist'].iloc[0],
+            "album_title": random_album['title'].iloc[0],
+            "year": random_album['year'].iloc[0],
         }
 
-        return random_album
 
