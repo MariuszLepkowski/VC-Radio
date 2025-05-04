@@ -22,6 +22,15 @@ def main_panel():
 @main_panel_blueprint.route('/album-generator', methods=['GET', 'POST'])
 def album_generator():
     album, results = process_album_request()
+
+    quota_exceeded = False
+
+    if results is not None:
+        for value in results.values():
+            if isinstance(value, tuple) and 'quota_exceeded' in value:
+                quota_exceeded = True
+                return render_template('album-generator.html', album=album, results=results, quota_exceeded=quota_exceeded)
+
     return render_template('album-generator.html', album=album, results=results)
 
 

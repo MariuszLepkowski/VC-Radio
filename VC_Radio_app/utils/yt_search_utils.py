@@ -1,6 +1,7 @@
 from googleapiclient.discovery import build
 from dotenv import load_dotenv
 import os
+from googleapiclient.errors import HttpError
 
 load_dotenv()
 
@@ -18,40 +19,48 @@ def search_album_track_on_yt(search_query):
     print(f'searchquery={search_query}')
 
     album_track_found = False
-    artist_query, title_query = search_query.split(' ', 1)
 
-    request = youtube.search().list(
-        part='snippet',
-        q=search_query,
-        type='video',
-        maxResults=50,
-    )
-    response = request.execute()
+    try:
+        artist_query, title_query = search_query.split(' ', 1)
+        yt_video_info = []
 
-    yt_video_info = []
+        request = youtube.search().list(
+            part='snippet',
+            q=search_query,
+            type='video',
+            maxResults=50,
+        )
+        response = request.execute()
 
-    for item in response['items']:
+    except HttpError as e:
+        if e.resp.status == 403 and 'quotaExceeded' in str(e):
+            print("YouTube API quota exceeded.")
+            return None, "quota_exceeded"
+        return None, "yt_api_error"
 
-        if "Topic" in item['snippet']['channelTitle'] and title_query in item['snippet']['description']:
-            print(item['snippet']['channelTitle'])
-            print(title_query)
-            print(item['snippet']['description'])
-            video_id = item['id']['videoId']
-            video_title = item['snippet']['title']
+    else:
+        for item in response['items']:
 
-            yt_video_info.append(
-                {
-                'YouTubeVideoTitle': video_title,
-                'YouTubeVideoUrl': YT_VIDEO_ENDPOINT + video_id,
-                'video_id': video_id,
-                }
-            )
+            if "Topic" in item['snippet']['channelTitle'] and title_query in item['snippet']['description']:
+                print(item['snippet']['channelTitle'])
+                print(title_query)
+                print(item['snippet']['description'])
+                video_id = item['id']['videoId']
+                video_title = item['snippet']['title']
 
-            album_track_found = True
-        else:
-            pass
-    print(f"search_album_track_on_yt response from YouTubeAPI: {response}")
-    return album_track_found, yt_video_info
+                yt_video_info.append(
+                    {
+                    'YouTubeVideoTitle': video_title,
+                    'YouTubeVideoUrl': YT_VIDEO_ENDPOINT + video_id,
+                    'video_id': video_id,
+                    }
+                )
+
+                album_track_found = True
+            else:
+                pass
+        print(f"search_album_track_on_yt response from YouTubeAPI: {response}")
+        return album_track_found, yt_video_info
 
 
 def search_playlist_on_yt(search_query):
@@ -60,63 +69,70 @@ def search_playlist_on_yt(search_query):
     print(f'searchquery={search_query}')
 
     yt_playlist_found = False
-
-    artist_query, title_query = search_query.split(' ', 1)
-
-    request = youtube.search().list(part='snippet', q=search_query)
-    response = request.execute()
-
     yt_playlist_info = []
 
-    for item in response['items']:
+    try:
+        artist_query, title_query = search_query.split(' ', 1)
 
-        if item['id']['kind'] == 'youtube#playlist':
-            playlist_id = item['id']['playlistId']
+        request = youtube.search().list(part='snippet', q=search_query)
+        response = request.execute()
 
-            playlist_request = youtube.playlists().list(part="snippet", id=playlist_id)
-            playlist_response = playlist_request.execute()
+    except HttpError as e:
+        if e.resp.status == 403 and 'quotaExceeded' in str(e):
+            print("YouTube API quota exceeded.")
+            return None, "quota_exceeded"
+        return None, "yt_api_error"
 
-            if 'items' in playlist_response:
-                yt_playlist_found = True
+    else:
+        for item in response['items']:
 
-                playlist_title = playlist_response['items'][0]['snippet']['title']
+            if item['id']['kind'] == 'youtube#playlist':
+                playlist_id = item['id']['playlistId']
 
-                playlist_items_request = youtube.playlistItems().list(
-                    part="contentDetails,snippet",
-                    playlistId=playlist_id,
-                    maxResults=50
-                )
-                playlist_items_response = playlist_items_request.execute()
+                playlist_request = youtube.playlists().list(part="snippet", id=playlist_id)
+                playlist_response = playlist_request.execute()
 
-                playlist_tracks = []
+                if 'items' in playlist_response:
+                    yt_playlist_found = True
 
-                video_num = 0
+                    playlist_title = playlist_response['items'][0]['snippet']['title']
 
-                for item in playlist_items_response['items']:
-                    video_num += 1
+                    playlist_items_request = youtube.playlistItems().list(
+                        part="contentDetails,snippet",
+                        playlistId=playlist_id,
+                        maxResults=50
+                    )
+                    playlist_items_response = playlist_items_request.execute()
 
-                    video_id = item['contentDetails']['videoId']
-                    video_title = item['snippet']['title']
-                    video_url = YT_VIDEO_ENDPOINT + video_id
+                    playlist_tracks = []
 
-                    playlist_tracks.append(
+                    video_num = 0
+
+                    for item in playlist_items_response['items']:
+                        video_num += 1
+
+                        video_id = item['contentDetails']['videoId']
+                        video_title = item['snippet']['title']
+                        video_url = YT_VIDEO_ENDPOINT + video_id
+
+                        playlist_tracks.append(
+                            {
+                                "video_num": video_num,
+                                "video_title": video_title,
+                                "video_url": video_url,
+                                "video_id": video_id,
+                            }
+                        )
+
+                    yt_playlist_info.append(
                         {
-                            "video_num": video_num,
-                            "video_title": video_title,
-                            "video_url": video_url,
-                            "video_id": video_id,
+                            'YouTubePlaylistTitle': playlist_title,
+                            'YouTubePlaylistUrl': YT_PLAYLIST_ENDPOINT + playlist_id,
+                            'yt_playlist_tracklist': playlist_tracks,
                         }
                     )
-
-                yt_playlist_info.append(
-                    {
-                        'YouTubePlaylistTitle': playlist_title,
-                        'YouTubePlaylistUrl': YT_PLAYLIST_ENDPOINT + playlist_id,
-                        'yt_playlist_tracklist': playlist_tracks,
-                    }
-                )
-    print(f"search_playlist_on_yt response from YouTubeAPI: {response}")
-    return yt_playlist_found, yt_playlist_info
+        print(f"search_playlist_on_yt response from YouTubeAPI: {response}")
+        return yt_playlist_found, yt_playlist_info
 
 
 def search_video_on_yt(search_query):

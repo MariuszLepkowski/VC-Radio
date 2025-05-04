@@ -72,8 +72,14 @@
     <div id="search-results" class="hidden">
 
         <!-- Playlists related to the generated album -->
-
-        {% if results and results.yt_playlist and results.yt_playlist[1] %}
+            {% if quota_exceeded %}
+                <div class="alert alert-warning">
+                    <h1><strong>⚠️ Album Search Limit Temporarily Reached</strong></h1>
+                    <p>Due to high traffic within VC Radio, the album search feature is temporarily unavailable. It will reset in a few hours.</p>
+                    <h5>In the meantime, feel free to search for the album directly on YouTube!</h5>
+                </div>
+            {% endif %}
+        {% if results and results.yt_playlist and results.yt_playlist[1] and not quota_exceeded %}
 
             <h2>Albums:</h2>
             {% for playlist in results.yt_playlist[1] %}
@@ -118,7 +124,7 @@
 
         <!-- Tracks from the generated album found on YouTube filtered by 'Topic' phrase inside channel title-->
 
-        {% if results and results.yt_album_track and results.yt_album_track[1] %}
+        {% if results and results.yt_album_track and results.yt_album_track[1] and not quota_exceeded%}
 
                 <h2>Album tracks found:</h2>
                 <button class="btn btn-secondary" onclick="toggleTracklist(this)">Show tracklist</button>
@@ -151,7 +157,7 @@
 
         <!-- General results related to the generated album found on YouTube -->
 
-        {% if results and results.yt_video and results.yt_video[1] %}
+        {% if results and results.yt_video and results.yt_video[1] and not quota_exceeded%}
 
             <h2>YouTube search results:</h2>
             <button class="btn btn-secondary" onclick="toggleTracklist(this)">Show tracklist</button>
