@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+venv/
+.env
+.git/
+.idea/
+.pytest_cache/
+oauth.json
+README.md
