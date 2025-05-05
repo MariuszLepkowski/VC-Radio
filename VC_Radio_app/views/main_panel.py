@@ -6,9 +6,9 @@ main_panel_blueprint = Blueprint('main_panel', __name__)
 
 
 def process_album_request():
-    if request.method == 'POST':  # Jeśli formularz został wysłany
+    if request.method == 'POST':  # If form has been sent
         return search_album()
-    else:  # Jeśli jest to pierwsze wyświetlenie strony
+    else:  # If it's the first site display
         return None, None
 
 

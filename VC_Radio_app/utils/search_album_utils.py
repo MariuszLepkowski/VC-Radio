@@ -11,13 +11,11 @@ def search_album():
         album_track_found = search_album_track_on_yt(search_query)
         video_found = search_video_on_yt(search_query)
         yt_playlist_found = search_playlist_on_yt(search_query)
-        # ytm_playlist_found = search_playlist_on_ytmusic(search_query)
 
         search_results_info = {
             "yt_album_track": album_track_found,
             "yt_playlist": yt_playlist_found,
             "yt_video": video_found,
-            # "yt_music_playlist": ytm_playlist_found,
         }
     except IndexError:
         print("An error occurred.")
@@ -25,6 +23,5 @@ def search_album():
             "yt_album_tracks": None,
             "yt_playlist": None,
             "yt_video": None,
-            # "yt_music_playlist": None,
         }
     return picked_album, search_results_info

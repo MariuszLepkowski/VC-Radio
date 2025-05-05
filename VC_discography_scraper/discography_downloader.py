@@ -53,7 +53,7 @@ class DiscographyDownloader:
             low_memory=False
         )
 
-        data = data.dropna(subset=['artist', 'title'])  # 🔥 Odfiltruj NaNy
+        data = data.dropna(subset=['artist', 'title'])
         data = data[data['artist'].str.strip() != '']
         data = data[data['title'].str.strip() != '']
 
