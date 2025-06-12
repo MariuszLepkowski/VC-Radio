@@ -58,7 +58,6 @@ Copy the example environment file and fill in your own keys:
 ```sh
 cp .env.example .env
 ```
-ouTube API Key Required
 
 **DISCLAIMER**: VC Radio uses the **YouTube Data API v3** to search for and stream music content.
 To enable this functionality, you must provide your own YouTube API key.
