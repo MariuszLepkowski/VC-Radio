@@ -4,23 +4,33 @@
 
 **VC Radio** is a custom-built music web application created as a tribute to one of the greatest drummers of all time — Vinnie Colaiuta.
 It allows users to generate a random album from Colaiuta’s vast discography (over 2,700 albums!) and listen to music directly within the app via an integrated audio player.
+
+
 <div align="center">
-<img src="VC_Radio_app/static/assets/img/vinniecolaiuta2.jpg" alt="Vinnie Colaiuta" style="width:50%; height:auto; display: block; margin-left:auto; margin-right:auto;">
+<img src="VC_Radio_app/static/assets/img/vc_homepg.jpg" alt="VC Radio Logo" style="width:70%; height:auto; display: block; margin-left:auto; margin-right:auto;">
 </div>
 
 ---
 
 ## Project Goals
 
-The main goal of **VC Radio** was to serve as a learning environment for mastering backend development with Django. From designing the architecture to deployment and containerization – this project reflects my self-taught journey and growth as a developer.
+The main goal of **VC Radio** was to serve as a learning environment for mastering backend development with Flask. From designing the architecture to deployment and containerization – this project reflects my self-taught journey and growth as a developer.
 
 ---
 
 ## Features
 
 - **Album generator** – randomly pick an album from Vinnie’s extensive career.
+<div align="center">
+<img src="VC_Radio_app/static/assets/img/vc_generator.jpg" alt="Vinnie Colaiuta" style="width:70%; height:auto; display: block; margin-left:auto; margin-right:auto;">
+</div>
+
 - **Discography scraping** – includes a custom-built scraper to keep album data updated.
 - **YouTube-powered audio player** – search and stream Vinnie’s tracks directly from YouTube via a custom JS player.
+<div align="center">
+<img src="VC_Radio_app/static/assets/img/vc_player.png" alt="Vinnie Colaiuta" style="width:70%; height:auto; display: block; margin-left:auto; margin-right:auto;">
+</div>
+
 - **Dynamic frontend** – interactive single-page experience built with Flask templates and JavaScript.
 - **Modular codebase** – utilities and views separated for clarity and maintainability.
 - **Testing suite** – includes unit and integration tests.
