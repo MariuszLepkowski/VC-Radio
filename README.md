@@ -151,7 +151,7 @@ Not licensed for commercial use.
 
 ## Live Demo & Repository
 
-- **Live App:** [https://vcradio.duckdns.org/](https://drumlib.duckdns.org/)
+- **Live App:** [https://vcradio.duckdns.org/](https://vcradio.duckdns.org/)
 - **Source Code:** [https://github.com/MariuszLepkowski/VC-Radio](https://github.com/MariuszLepkowski/DrumLib)
 
 ---
